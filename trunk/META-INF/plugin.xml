@@ -1,0 +1,60 @@
+<!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
+<idea-plugin>
+    <name>Arc language plugin</name>
+    <description>Creates an environment with which to develop Arc applications</description>
+    <version>0.1</version>
+    <vendor>YourCompany</vendor>
+    <idea-version since-build="7718"/>
+
+    <application-components>
+        <component>
+            <implementation-class>com.bitbakery.plugin.arc.ArcSupportLoader</implementation-class>
+        </component>
+        <!--
+
+                <component>
+                    <implementation-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</implementation-class>
+                </component>
+                <component>
+                    <implementation-class>com.bitbakery.plugin.lisp.module.LispModuleLoader</implementation-class>
+                </component>
+                <component>
+                    <implementation-class>com.bitbakery.plugin.lisp.sdk.LispSdkType</implementation-class>
+                </component>
+
+        -->
+    </application-components>
+
+    <project-components>
+        <component>
+            <implementation-class>com.bitbakery.plugin.arc.repl.ReplToolWindow</implementation-class>
+            <interface-class>com.bitbakery.plugin.arc.repl.ReplToolWindow</interface-class>
+        </component>
+    </project-components>
+
+
+    <actions>
+        <action id="ArcMacex" class="com.bitbakery.plugin.arc.actions.MacexAction" text="Macroexpand"
+                description="Full macroexpansion">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt X"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="ArcMacex1" class="com.bitbakery.plugin.arc.actions.Macex1Action" text="Macroexpand-1"
+                description="Single macroexpansion">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt Z"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="ArcLoadFile" class="com.bitbakery.plugin.arc.actions.LoadFileAction" text="Load File"
+                description="Load file">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt L"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="ArcRunSelection" class="com.bitbakery.plugin.arc.actions.RunSelectionAction" text="Run Selection"
+                description="Run selection">
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt S"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+
+</idea-plugin>
