@@ -1,0 +1,23 @@
+<!-- Use this build only with idea-flex.skeleton and with patched JFlex.jar -->
+<project name="Generate lexer from arc.flex, using idea flex skeleton and patched JFlex" default="jflex">
+    <property name="lexer.file" value="src/com/bitbakery/plugin/arc/lexer/_ArcLexer.java"/>
+    <property name="lexer.log" value="jflex.log"/>
+    <property name="lexer.source" value="src/com/bitbakery/plugin/arc/lexer/arc.flex"/>
+    <property name="lexer.skeleton" value="lib/idea-flex.skeleton"/>
+    <property name="jflex.jar" value="lib/JFlex.jar"/>
+
+    <target name="clean">
+        <delete file="${lexer.file}~"/>
+        <delete file="${lexer.file}"/>
+        <delete file="${lexer.log}"/>
+    </target>
+
+    <target name="jflex" description="Produces Jflex based lexer" depends="clean">
+        <java jar="${jflex.jar}" output="${lexer.log}" fork="true">
+            <arg value="--charat"/>
+            <arg value="-skel"/>
+            <arg value="${lexer.skeleton}"/>
+            <arg value="${lexer.source}"/>
+        </java>
+    </target>
+</project>
