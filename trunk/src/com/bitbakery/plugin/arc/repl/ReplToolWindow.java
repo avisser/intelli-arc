@@ -7,6 +7,7 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.util.Icons;
+import com.bitbakery.plugin.arc.ArcIcons;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -78,7 +79,7 @@ public class ReplToolWindow implements ProjectComponent {
 
         myToolWindow = toolWindowManager.registerToolWindow(TOOL_WINDOW_ID, myContentPanel, ToolWindowAnchor.BOTTOM);
         myToolWindow.setAnchor(ToolWindowAnchor.BOTTOM, null);
-        //myToolWindow.setIcon(ArcIcons.ARC_FILE_ICON);
+        myToolWindow.setIcon(ArcIcons.ARC_REPL_ICON);
     }
 
     private JPanel createButtonPanel() {

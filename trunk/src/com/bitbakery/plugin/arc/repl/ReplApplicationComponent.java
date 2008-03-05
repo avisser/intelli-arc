@@ -1,25 +1,29 @@
 package com.bitbakery.plugin.arc.repl;
 
+import com.bitbakery.plugin.arc.ArcConstants;
+import com.bitbakery.plugin.arc.ArcIcons;
+import com.bitbakery.plugin.arc.config.ArcConfigurationForm;
 import com.intellij.openapi.components.ApplicationComponent;
-import com.intellij.openapi.util.DefaultJDOMExternalizer;
+import com.intellij.openapi.options.*;
+import com.intellij.openapi.util.JDOMExternalizable;
 import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.WriteExternalException;
-import com.bitbakery.plugin.arc.ArcConstants;
-import org.jdom.Element;
+import com.intellij.openapi.util.DefaultJDOMExternalizer;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
+import org.jdom.Element;
 
 import javax.swing.*;
 
-public class ReplApplicationComponent implements ApplicationComponent { //, Configurable, JDOMExternalizable {
-    //private ArcConfigurationForm form;
+public class ReplApplicationComponent extends BaseConfigurable implements ApplicationComponent, Configurable, JDOMExternalizable {
 
-    // Common Lisp settings - these guys are persisted via JDOMExternalizable
-    //public LispImplementationType type;
-    public String homeDirectory;
-    public String initializationFile;
-    public String arcExecutable;
+    // TODO - Update to use PersistentStateComponent
+    public String replExecutable;
+    public String mzSchemeHome;
+    public String arcHome;
+
+    private volatile ArcConfigurationForm form;
 
 
     public void initComponent() {
@@ -34,29 +38,31 @@ public class ReplApplicationComponent implements ApplicationComponent { //, Conf
         return "ReplApplicationComponent";
     }
 
-    public String getHomeDirectory() {
-        return homeDirectory;
+    
+    public String getReplExecutable() {
+        return replExecutable;
     }
 
-    public void setHomeDirectory(final String homeDirectory) {
-        this.homeDirectory = homeDirectory;
+    public void setReplExecutable(String replExecutable) {
+        this.replExecutable = replExecutable;
     }
 
-    public String getInitializationFile() {
-        return initializationFile;
+    public String getMzSchemeHome() {
+        return mzSchemeHome;
     }
 
-    public void setInitializationFile(final String initializationFile) {
-        this.initializationFile = initializationFile;
+    public void setMzSchemeHome(final String mzSchemeHome) {
+        this.mzSchemeHome = mzSchemeHome;
     }
 
-    public String getArcExecutable() {
-        return arcExecutable;
+    public String getArcHome() {
+        return arcHome;
     }
 
-    public void setArcExecutable(final String arcExecutable) {
-        this.arcExecutable = arcExecutable;
+    public void setArcHome(final String arcHome) {
+        this.arcHome = arcHome;
     }
+
 
     @Nls
     public String getDisplayName() {
@@ -64,36 +70,36 @@ public class ReplApplicationComponent implements ApplicationComponent { //, Conf
     }
 
     public Icon getIcon() {
-        return null;
-        // return ArcIcons.ARC_FILE_ICON;
+        return ArcIcons.ARC_CONFIG_ICON;
     }
 
     @Nullable
     @NonNls
     public String getHelpTopic() {
+        // TODO - How does one get a help topic created and loaded? Is this it?
         return null;
     }
 
-/*
     public JComponent createComponent() {
         if (form == null) {
             form = new ArcConfigurationForm();
+            form.setData(this);
         }
         return form.getRootComponent();
     }
-*/
 
-/*
     public boolean isModified() {
         return form != null && form.isModified(this);
     }
 
+    // TODO - This might be wrong...
     public void apply() throws ConfigurationException {
         if (form != null) {
             form.getData(this);
         }
     }
 
+    // TODO - This might be wrong...
     public void reset() {
         if (form != null) {
             form.setData(this);
@@ -102,6 +108,20 @@ public class ReplApplicationComponent implements ApplicationComponent { //, Conf
 
     public void disposeUIResources() {
         form = null;
+    }
+
+
+/*
+    public Object getState() {
+        return this;
+    }
+
+    public void loadState(Object state) {
+        if (state != null) {
+            ReplApplicationComponent that = (ReplApplicationComponent) state;
+            this.mzSchemeHome = that.mzSchemeHome;
+            this.arcHome = that.arcHome;
+        }
     }
 */
 

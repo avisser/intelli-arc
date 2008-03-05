@@ -59,9 +59,7 @@ public class ArcColorsPage implements ColorSettingsPage {
 
     @NotNull
     public Icon getIcon() {
-        // TODO: This actually blows up... this guy *must* return an icon!
-        return null;
-        // return LispIcons.LISP_FILE_ICON;
+        return ArcIcons.ARC_FILE_ICON;
     }
 
     @NotNull

@@ -15,7 +15,8 @@ import com.intellij.lang.folding.FoldingBuilder;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.bitbakery.plugin.arc.psi.ArcElement;
+import com.intellij.psi.PsiFile;
+import com.bitbakery.plugin.arc.structure.ArcStructureViewModel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,12 +52,16 @@ public class ArcLanguage extends Language {
         return new ArcFoldingBuilder();
     }
 
-
-    @NotNull
-    public StructureViewBuilder getStructureViewBuilder(@NotNull final ArcElement root) {
+    @Nullable
+    public StructureViewBuilder getStructureViewBuilder(final PsiFile psiFile) {
         return new TreeBasedStructureViewBuilder() {
+            @NotNull
             public StructureViewModel createStructureViewModel() {
-                return new ArcStructureViewModel(root);
+                return new ArcStructureViewModel(psiFile);
+            }
+
+            public boolean isRootNodeShown() {
+                return false;
             }
         };
     }

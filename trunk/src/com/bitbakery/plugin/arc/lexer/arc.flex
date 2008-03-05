@@ -56,22 +56,23 @@ NumericLiteral=["+""-"]?({IntegerLiteral})|({FloatLiteral})
 /**** TODO - Do we need support for pipe-delimited symbols, like in Common Lisp??? ********************/
 /**** TODO - Is there some nice way to generalize this to other languages with non-Roman chars?? ******/
 /**** TODO - Can we intercept special characters before we intercept symbols? ******/
-Symbol=[A-Za-z0-9!@#$%<>/?&\^\+\*\-=\.\?]*
+Char=[A-Za-z0-9!@#$%<>/?&\^\+\*\-=\.\?\;\|]
+Symbol={Char}*
 
 EscapeSequence=\\[^\r\n]
 StringLiteral=\"([^\\\"]|{EscapeSequence})*(\"|\\)?
-CharLiteral=#\\[A-Za-z]
+CharLiteral=#\\{Char}
 
 /**** TODO - Include character literals ******************************/
 
 %%
 
 {WhiteSpace}     { return WHITESPACE; }
+{CharLiteral}    { return CHAR_LITERAL; }
 {LineComment}    { return LINE_COMMENT; }
 {BlockComment}   { return BLOCK_COMMENT; }
 {NumericLiteral} { return NUMERIC_LITERAL; }
 {StringLiteral}  { return STRING_LITERAL; }
-{CharLiteral}    { return CHAR_LITERAL; }
 
 
 /** TODO - Any other tokens? =, +, etc.? *******************/

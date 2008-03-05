@@ -30,9 +30,7 @@ public class ArcFileType extends LanguageFileType {
     }
 
     public Icon getIcon() {
-        return null;
-        // return IconLoader.getIcon("/fileTypes/javaScript.png");
-        // return LispIcons.LISP_FILE_ICON;
+        return ArcIcons.ARC_FILE_ICON;
     }
 
 /*
