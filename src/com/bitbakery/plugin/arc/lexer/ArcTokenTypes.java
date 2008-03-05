@@ -72,6 +72,7 @@ public interface ArcTokenTypes {
 
 
     IElementType SYMBOL = new ArcElementType("symbol");
+    TokenSet SYMBOL_FILTER = TokenSet.create(ArcTokenTypes.SYMBOL);
 
 
     // Control characters

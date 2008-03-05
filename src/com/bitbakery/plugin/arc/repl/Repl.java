@@ -2,6 +2,9 @@ package com.bitbakery.plugin.arc.repl;
 
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.options.ShowSettingsUtil;
 import org.apache.commons.collections.ArrayStack;
 
 import javax.swing.*;
@@ -63,39 +66,38 @@ public class Repl extends JScrollPane {
     }
 
     private Process spawnArcProcess() throws IOException {
-        // TODO - Uhhh... Looks like some stuff belongs in the config screen, yes?
         Application app = ApplicationManager.getApplication();
         ReplApplicationComponent component = app.getComponent(ReplApplicationComponent.class);
 
-/*
-        final String home = component.getHomeDirectory();
-        final String arc = component.getArcExecutable();
+        // TODO - Does any of this need to be in the config form?
+        String arcHome = component.getArcHome();
+        if (arcHome == null) {
+            arcHome = "/Users/kurtc/dev/arc2";
+        }
 
-        return Runtime.getRuntime().exec(home + "/" + arc);
-*/
+        String schemeHome = component.getMzSchemeHome();
+        if (schemeHome == null) {
+            schemeHome = "/Applications/MzScheme v360";
+        }
 
-        // TODO: Kindly put my good bits in a configuration setting, accessible via a config form
-        String schemeHome = "/Applications/MzScheme v360";
+        // TODO - Get the right stuff into the config form...
+        String replExecutable = component.getReplExecutable();
+        if (replExecutable == null) {
+            replExecutable = "mzscheme -m -f as.scm";
+        }
+
         String scheme = schemeHome + "/bin/mzscheme";
-        String schemeParam1 = "-m";
-        String schemeParam2 = "-f";
+        String arg0 = "-m";
+        String arg1 = "-f";
+        String initializationFile = "as.scm";
 
-        String arcStartupFile = "as.scm";
-        String arcHome = "/Users/kurtc/dev/arc2";
-
-        return Runtime.getRuntime().exec(new String[] {scheme, schemeParam1, schemeParam2, arcStartupFile}, null, new File(arcHome));
-/*
-        final String initFile = component.getInitializationFile();
-
-        if (lisp == null) {
+        if (arcHome == null || schemeHome == null) {
             // TODO - How do we get the *current* project??
             Project[] openProjects = ProjectManager.getInstance().getOpenProjects();
             ShowSettingsUtil.getInstance().editConfigurable(openProjects[0], component);
-        } else if (initFile == null) {
-            return Runtime.getRuntime().exec(new String[]{lisp});
         }
-        return Runtime.getRuntime().exec(new String[]{lisp, "-M", initFile}); // TODO - Is this Win32-specific?
-*/
+
+        return Runtime.getRuntime().exec(new String[] {scheme, arg0, arg1, initializationFile}, null, new File(arcHome));
     }
 
     public void execute(String replInput) {
@@ -172,7 +174,7 @@ public class Repl extends JScrollPane {
             try {
                 replInput = getText(inputStartPosition, (end - inputStartPosition) - 1);
             } catch (BadLocationException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
             outputWriter.println(replInput);
             //outputWriter.flush();

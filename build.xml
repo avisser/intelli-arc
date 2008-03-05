@@ -12,6 +12,12 @@
         <delete file="${lexer.log}"/>
     </target>
 
+    <target name="copy-resources">
+        <copy todir="out/production/intelli-arc/resources">
+            <fileset dir="resources"/>
+        </copy>
+    </target>
+
     <target name="jflex" description="Produces Jflex based lexer" depends="clean">
         <java jar="${jflex.jar}" output="${lexer.log}" fork="true">
             <arg value="--charat"/>

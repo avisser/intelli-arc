@@ -8,27 +8,27 @@
 
     <application-components>
         <component>
+            <interface-class>com.bitbakery.plugin.arc.ArcSupportLoader</interface-class>
             <implementation-class>com.bitbakery.plugin.arc.ArcSupportLoader</implementation-class>
         </component>
+        <component>
+            <interface-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</interface-class>
+            <implementation-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</implementation-class>
+        </component>
         <!--
-
-                <component>
-                    <implementation-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</implementation-class>
-                </component>
-                <component>
-                    <implementation-class>com.bitbakery.plugin.lisp.module.LispModuleLoader</implementation-class>
-                </component>
-                <component>
-                    <implementation-class>com.bitbakery.plugin.lisp.sdk.LispSdkType</implementation-class>
-                </component>
-
+            <component>
+                <implementation-class>com.bitbakery.plugin.lisp.module.LispModuleLoader</implementation-class>
+            </component>
+            <component>
+                <implementation-class>com.bitbakery.plugin.lisp.sdk.LispSdkType</implementation-class>
+            </component>
         -->
+
     </application-components>
 
     <project-components>
         <component>
             <implementation-class>com.bitbakery.plugin.arc.repl.ReplToolWindow</implementation-class>
-            <interface-class>com.bitbakery.plugin.arc.repl.ReplToolWindow</interface-class>
         </component>
     </project-components>
 

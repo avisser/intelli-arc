@@ -2,6 +2,6 @@ Reading skeleton file "lib/idea-flex.skeleton".
 Reading "src/com/bitbakery/plugin/arc/lexer/arc.flex"
 Constructing NFA : 229 states in NFA
 Converting NFA to DFA : 
-..........................................................................................
-92 states before minimization, 69 states in minimized DFA
+................................................................................................
+98 states before minimization, 73 states in minimized DFA
 Writing code to "src/com/bitbakery/plugin/arc/lexer/_ArcLexer.java"

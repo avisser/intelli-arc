@@ -25,9 +25,13 @@ public class ArcFoldingBuilder implements FoldingBuilder {
         } else if (node.getElementType() == ArcElementTypes.MACRO_DEFINITION) {
             Mac def = (Mac) node.getPsi();
             return "(mac " + def.getName() + "...)";
+        } else if (node.getElementType() == ArcElementTypes.EXPRESSION) {
+            // TODO - We should actually print the first element, followed by an ellipsis
+            return "(...)";
         } else if (node.getElementType() == ArcTokenTypes.BLOCK_COMMENT) {
+            // TODO - Adjacent line comments should be foldable as a single block comment
             String text = node.getText();
-            return text.length() > 25 ? text.substring(0, 25) + "..." : text;
+            return text.length() > 15 ? text.substring(0, 15) + "..." : text;
         }
         return null;
     }
@@ -37,17 +41,16 @@ public class ArcFoldingBuilder implements FoldingBuilder {
     }
 
     public FoldingDescriptor[] buildFoldRegions(ASTNode node, Document document) {
-        weirdHack(node);
+        touchTree(node);
         List<FoldingDescriptor> descriptors = new ArrayList<FoldingDescriptor>();
         appendDescriptors(node, document, descriptors);
         return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
     }
 
-    private void weirdHack(ASTNode node) {
-        // We have to touch the PSI tree to get the folding to show up when we first open a file
+    /** We have to touch the PSI tree to get the folding to show up when we first open a file */
+    private void touchTree(ASTNode node) {
         if (node.getElementType() == ArcElementTypes.FILE) {
             final PsiElement firstChild = node.getPsi().getFirstChild();
-            System.out.println(firstChild.getText());
         }
     }
 
@@ -66,6 +69,7 @@ public class ArcFoldingBuilder implements FoldingBuilder {
     private boolean isFoldableNode(ASTNode node) {
         return (node.getElementType() == ArcElementTypes.FUNCTION_DEFINITION)
                 || (node.getElementType() == ArcElementTypes.MACRO_DEFINITION)
+                || (node.getElementType() == ArcElementTypes.EXPRESSION && node.getTextLength() > 5)
                 || (node.getElementType() == ArcTokenTypes.BLOCK_COMMENT);
     }
 }

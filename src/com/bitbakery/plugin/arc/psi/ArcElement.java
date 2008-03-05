@@ -48,6 +48,6 @@ public abstract class ArcElement extends ASTWrapperPsiElement {
     }
 
     public Icon getIcon(int flags) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }

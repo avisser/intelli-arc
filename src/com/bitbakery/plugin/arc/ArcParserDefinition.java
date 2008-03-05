@@ -3,6 +3,7 @@ package com.bitbakery.plugin.arc;
 import com.bitbakery.plugin.arc.lexer.ArcLexer;
 import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.bitbakery.plugin.arc.psi.*;
+import com.bitbakery.plugin.arc.psi.ArcElementTypes;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -83,6 +84,8 @@ public class ArcParserDefinition implements ParserDefinition {
             return new Def(node);
         } else if (type == ArcElementTypes.MACRO_DEFINITION) {
             return new Mac(node);
+        } else if (type == ArcElementTypes.EXPRESSION) {
+            return new Expression(node);
         }
 
         // TODO - All the other node types...
