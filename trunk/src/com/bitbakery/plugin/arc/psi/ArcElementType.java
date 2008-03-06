@@ -1,12 +1,12 @@
 package com.bitbakery.plugin.arc.psi;
 
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.PsiBuilder;
 import com.bitbakery.plugin.arc.ArcFileType;
+import com.intellij.lang.PsiBuilder;
+import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Simple wrapper for IElementType which enables Arc PSI elements to own theirown parsing
  */
 public class ArcElementType extends IElementType {
 

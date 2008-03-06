@@ -1,15 +1,14 @@
 package com.bitbakery.plugin.arc.psi;
 
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.impl.PsiBuilderImpl;
 import com.bitbakery.plugin.arc.ArcFileType;
 import com.bitbakery.plugin.arc.lexer.ArcLexer;
-import com.bitbakery.plugin.arc.psi.ArcElementTypes;
-import org.junit.Test;
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.impl.PsiBuilderImpl;
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Tests that ArcParser is building PSI element trees correctly.
  */
 public class ArcParserTest {
 

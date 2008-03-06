@@ -1,19 +1,19 @@
 package com.bitbakery.plugin.arc;
 
+import com.bitbakery.plugin.arc.lexer.ArcLexer;
+import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
-import com.bitbakery.plugin.arc.lexer.ArcLexer;
-import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Defines Arc tokens and elements which can have custom font and color to enhance readability
  */
 public class ArcSyntaxHighlighter extends SyntaxHighlighterBase {
     private static Map<IElementType, TextAttributesKey> keys;

@@ -1,7 +1,7 @@
 package com.bitbakery.plugin.arc.psi;
 
-import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.SYMBOL_FILTER;
 import com.bitbakery.plugin.arc.ArcIcons;
+import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.SYMBOL_FILTER;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * PSI element for Arc function ("def") definitions.
  */
 public class Def extends Expression implements PsiNamedElement {
     private String name;
