@@ -21,12 +21,11 @@ import javax.swing.*;
         storages = {
         @Storage(
                 id = "main",
-                file = "$APP_CONFIG$/arcsettings.xml"
+                file = "$APP_CONFIG$/arc-settings.xml"
         )})
 public class ReplApplicationComponent extends BaseConfigurable implements ApplicationComponent, Configurable, PersistentStateComponent<ReplApplicationComponent> {
 
-    // TODO - Update to use PersistentStateComponent
-    public String replExecutable;
+    public String arcInitializationFile;
     public String mzSchemeHome;
     public String arcHome;
 
@@ -47,12 +46,12 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
     }
 
 
-    public String getReplExecutable() {
-        return replExecutable;
+    public String getArcInitializationFile() {
+        return arcInitializationFile;
     }
 
-    public void setReplExecutable(String replExecutable) {
-        this.replExecutable = replExecutable;
+    public void setArcInitializationFile(String arcInitializationFile) {
+        this.arcInitializationFile = arcInitializationFile;
     }
 
     public String getMzSchemeHome() {
@@ -123,6 +122,6 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
     public void loadState(ReplApplicationComponent that) {
         this.mzSchemeHome = that.mzSchemeHome;
         this.arcHome = that.arcHome;
-        this.replExecutable = that.replExecutable;
+        this.arcInitializationFile = that.arcInitializationFile;
     }
 }
