@@ -1,13 +1,15 @@
 package com.bitbakery.plugin.arc.repl;
 
 //import com.bitbakery.plugin.arc.LispIcons;
+
+import com.bitbakery.plugin.arc.ArcIcons;
+import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.util.Icons;
-import com.bitbakery.plugin.arc.ArcIcons;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -16,17 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ReplToolWindow implements ProjectComponent {
-    public static final String RENAME_REPL = "Rename REPL";
-
-    private static final String CLOSE_TAB = "Close the current REPL tab";
-    private static final String OPEN_TAB = "Open a new REPL tab";
-    public static final String TOOL_WINDOW_ID = "Arc REPL";
-    public static final String ADD = "Add";
-    public static final String REMOVE = "Remove";
-    public static final String NEW_NAME = "New name:";
-    public static final String REPL = "REPL";
-    public static final String OK = "OK";
-    public static final String CANCEL = "Cancel";
 
     private Project myProject;
     private ToolWindow myToolWindow;
@@ -51,7 +42,7 @@ public class ReplToolWindow implements ProjectComponent {
     public void disposeComponent() {
         // Close out any open REPLs
         for (Component repl : tabbedPane.getComponents()) {
-            ((Repl) repl).close();            
+            ((Repl) repl).close();
         }
     }
 
@@ -75,9 +66,9 @@ public class ReplToolWindow implements ProjectComponent {
         myContentPanel.add(tabbedPane, BorderLayout.CENTER);
         myContentPanel.add(createButtonPanel(), BorderLayout.WEST);
 
-        tabbedPane.addTab(REPL, new Repl());
+        tabbedPane.addTab(message("repl.title"), new Repl());
 
-        myToolWindow = toolWindowManager.registerToolWindow(TOOL_WINDOW_ID, myContentPanel, ToolWindowAnchor.BOTTOM);
+        myToolWindow = toolWindowManager.registerToolWindow(message("repl.toolWindowId"), myContentPanel, ToolWindowAnchor.BOTTOM);
         myToolWindow.setAnchor(ToolWindowAnchor.BOTTOM, null);
         myToolWindow.setIcon(ArcIcons.ARC_REPL_ICON);
     }
@@ -86,17 +77,17 @@ public class ReplToolWindow implements ProjectComponent {
         // TODO - Modify the buttons to match look and feel of other open/close tab buttons - see "Add" and "Cancel" icons in the IntelliJ resource bundle...
         // TODO - See how we can use the built-in tool window toolbars...
         JButton addButton = new JButton(Icons.ADD_ICON);
-        addButton.setToolTipText(OPEN_TAB);
+        addButton.setToolTipText(message("repl.open"));
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                tabbedPane.addTab(REPL, new Repl());
+                tabbedPane.addTab(message("repl.title"), new Repl());
                 tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
             }
         });
 
         // TODO - We should also close the tab and kill the process if the user enters the right Lisp command (usually, (quit), or some such)
         JButton removeButton = new JButton(Icons.DELETE_ICON);
-        removeButton.setToolTipText(CLOSE_TAB);
+        removeButton.setToolTipText(message("repl.close"));
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 if (tabbedPane.getSelectedIndex() > -1) {
@@ -114,14 +105,14 @@ public class ReplToolWindow implements ProjectComponent {
 
     private JPopupMenu createPopupMenu() {
         JPopupMenu menu = new JPopupMenu();
-        JMenuItem item = new JMenuItem(RENAME_REPL);
+        JMenuItem item = new JMenuItem(message("repl.rename"));
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 int tabIndex = tabbedPane.getSelectedIndex();
                 if (tabIndex > -1) {
                     String oldTitle = tabbedPane.getTitleAt(tabIndex);
                     String newTitle = (String) JOptionPane.showInputDialog(
-                            (Component) actionEvent.getSource(), NEW_NAME, RENAME_REPL,
+                            (Component) actionEvent.getSource(), message("repl.newName"), message("repl.rename"),
                             JOptionPane.PLAIN_MESSAGE, null, null, oldTitle);
                     if (newTitle != null) {
                         tabbedPane.setTitleAt(tabIndex, newTitle);
@@ -134,6 +125,6 @@ public class ReplToolWindow implements ProjectComponent {
     }
 
     private void unregisterToolWindow() {
-        ToolWindowManager.getInstance(myProject).unregisterToolWindow(TOOL_WINDOW_ID);
+        ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
     }
 }

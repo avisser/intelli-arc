@@ -1,8 +1,7 @@
 package com.bitbakery.plugin.arc;
 
-import static com.bitbakery.plugin.arc.ArcBundle.message;
+import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
 import static com.bitbakery.plugin.arc.ArcSyntaxHighlighter.*;
-
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
@@ -19,18 +18,18 @@ public class ArcColorsPage implements ColorSettingsPage {
     private static final String DEMO_TEXT =
             ";  Sample comment\n\n" +
 
-            "(= v \"Some global variable\")\n\n" +
+                    "(= v \"Some global variable\")\n\n" +
 
-            "(= one-var-function [+ 1 _])\n\n" +
+                    "(= one-var-function [+ 1 _])\n\n" +
 
-            "(def function-name (param . rest)\n" +
-            "   (function-body param rest))\n\n\n" +
+                    "(def function-name (param . rest)\n" +
+                    "   (function-body param rest))\n\n\n" +
 
-            "(def another-function rest\n" +
-            "   (function-body rest))\n\n\n" +
+                    "(def another-function rest\n" +
+                    "   (function-body rest))\n\n\n" +
 
-            "(mac macro-name (param . rest)\n" +
-            "   `(,param ,@rest))\n";
+                    "(mac macro-name (param . rest)\n" +
+                    "   `(,param ,@rest))\n";
 
     private static final AttributesDescriptor[] ATTRS = new AttributesDescriptor[]{
             new AttributesDescriptor(message("color.settings.comment"), LINE_COMMENT),

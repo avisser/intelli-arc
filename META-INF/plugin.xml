@@ -1,18 +1,35 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
 <idea-plugin>
     <name>Arc language plugin</name>
-    <description>Creates an environment with which to develop Arc applications</description>
+    <description>Creates an environment for developing Arc applications</description>
     <version>0.1</version>
-    <vendor>YourCompany</vendor>
+    <vendor>The Bit Bakery</vendor>
     <idea-version since-build="7718"/>
+    <resource-bundle>com.bitbakery.plugin.arc.ArcResourceBundle</resource-bundle>
+    <extensions defaultExtensionNs="com.intellij">
+        <!--
+                <errorHandler implementation="org.jetbrains.plugins.ruby.error.RubyErrorReportSubmitter"/>
+                <gotoClassContributor implementation="org.jetbrains.plugins.ruby.ruby.gotoByName.RubyClassAndModuleContributor"/>
+                <gotoSymbolContributor implementation="org.jetbrains.plugins.ruby.ruby.gotoByName.RubySymbolContributor"/>
+        -->
+
+        <fileTypeFactory implementation="com.bitbakery.plugin.arc.ArcSupportLoader"/>
+        <colorSettingsPage implementation="com.bitbakery.plugin.arc.ArcColorsPage"/>
+
+        <!--
+                <configurationProducer implementation="org.jetbrains.plugins.ruby.ruby.run.confuguration.tests.RORConfigurationProducer"/>
+
+                <usageTypeProvider implementation="org.jetbrains.plugins.ruby.ruby.lang.findUsages.RubyUsageTypeProvider"/>
+        -->
+
+    </extensions>
+
 
     <application-components>
         <component>
-            <interface-class>com.bitbakery.plugin.arc.ArcSupportLoader</interface-class>
             <implementation-class>com.bitbakery.plugin.arc.ArcSupportLoader</implementation-class>
         </component>
         <component>
-            <interface-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</interface-class>
             <implementation-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</implementation-class>
         </component>
         <!--

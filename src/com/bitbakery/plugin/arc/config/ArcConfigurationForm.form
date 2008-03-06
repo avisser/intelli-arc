@@ -31,7 +31,8 @@
           </grid>
         </constraints>
         <properties>
-          <text value="MzScheme home"/>
+          <labelFor value="581e8"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeHome"/>
         </properties>
       </component>
       <component id="fd371" class="javax.swing.JLabel">
@@ -41,7 +42,8 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Arc home"/>
+          <labelFor value="fb055"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcHome"/>
         </properties>
       </component>
       <component id="4a4c9" class="javax.swing.JLabel">
@@ -51,7 +53,8 @@
           </grid>
         </constraints>
         <properties>
-          <text value="REPL executable"/>
+          <labelFor value="e8d80"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.repl"/>
         </properties>
       </component>
       <component id="e8d80" class="javax.swing.JTextField" binding="replExecutable">

@@ -1,22 +1,29 @@
 package com.bitbakery.plugin.arc.repl;
 
-import com.bitbakery.plugin.arc.ArcConstants;
 import com.bitbakery.plugin.arc.ArcIcons;
 import com.bitbakery.plugin.arc.config.ArcConfigurationForm;
 import com.intellij.openapi.components.ApplicationComponent;
-import com.intellij.openapi.options.*;
-import com.intellij.openapi.util.JDOMExternalizable;
-import com.intellij.openapi.util.InvalidDataException;
-import com.intellij.openapi.util.WriteExternalException;
-import com.intellij.openapi.util.DefaultJDOMExternalizer;
+import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
+import com.intellij.openapi.options.BaseConfigurable;
+import com.intellij.openapi.options.Configurable;
+import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jdom.Element;
 
 import javax.swing.*;
 
-public class ReplApplicationComponent extends BaseConfigurable implements ApplicationComponent, Configurable, JDOMExternalizable {
+@State(
+        name = "ReplApplicationComponent",
+        storages = {
+        @Storage(
+                id = "main",
+                file = "$APP_CONFIG$/arcsettings.xml"
+        )})
+public class ReplApplicationComponent extends BaseConfigurable implements ApplicationComponent, Configurable, PersistentStateComponent<ReplApplicationComponent> {
 
     // TODO - Update to use PersistentStateComponent
     public String replExecutable;
@@ -34,11 +41,12 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
         // Do nothing
     }
 
+    @NotNull
     public String getComponentName() {
         return "ReplApplicationComponent";
     }
 
-    
+
     public String getReplExecutable() {
         return replExecutable;
     }
@@ -66,7 +74,7 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
 
     @Nls
     public String getDisplayName() {
-        return ArcConstants.ARC;
+        return com.bitbakery.plugin.arc.ArcResourceBundle.message("plugin.arc.name");
     }
 
     public Icon getIcon() {
@@ -92,14 +100,12 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
         return form != null && form.isModified(this);
     }
 
-    // TODO - This might be wrong...
     public void apply() throws ConfigurationException {
         if (form != null) {
             form.getData(this);
         }
     }
 
-    // TODO - This might be wrong...
     public void reset() {
         if (form != null) {
             form.setData(this);
@@ -110,26 +116,13 @@ public class ReplApplicationComponent extends BaseConfigurable implements Applic
         form = null;
     }
 
-
-/*
-    public Object getState() {
+    public ReplApplicationComponent getState() {
         return this;
     }
 
-    public void loadState(Object state) {
-        if (state != null) {
-            ReplApplicationComponent that = (ReplApplicationComponent) state;
-            this.mzSchemeHome = that.mzSchemeHome;
-            this.arcHome = that.arcHome;
-        }
-    }
-*/
-
-    public void readExternal(Element element) throws InvalidDataException {
-        DefaultJDOMExternalizer.readExternal(this, element);
-    }
-
-    public void writeExternal(Element element) throws WriteExternalException {
-        DefaultJDOMExternalizer.writeExternal(this, element);
+    public void loadState(ReplApplicationComponent that) {
+        this.mzSchemeHome = that.mzSchemeHome;
+        this.arcHome = that.arcHome;
+        this.replExecutable = that.replExecutable;
     }
 }
