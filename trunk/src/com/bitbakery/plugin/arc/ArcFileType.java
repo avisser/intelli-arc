@@ -1,5 +1,6 @@
 package com.bitbakery.plugin.arc;
 
+import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,8 +21,7 @@ public class ArcFileType extends LanguageFileType {
 
     @NotNull
     public String getDescription() {
-        return "Arc source file";
-        // return JSBundle.message("javascript.filetype.description");
+        return message("arc.filetype.description");
     }
 
     @NotNull
@@ -32,28 +32,5 @@ public class ArcFileType extends LanguageFileType {
     public Icon getIcon() {
         return ArcIcons.ARC_FILE_ICON;
     }
-
-/*
-    @NotNull
-    public SyntaxHighlighter getHighlighter(@Nullable final Project project, @Nullable final VirtualFile virtualFile) {
-        Language lang = null;
-        if (virtualFile != null) {
-            lang = JavaScriptSupportLoader.getLanguageDialect(virtualFile);
-        }
-        if (lang == null && project != null && virtualFile != null) {
-            PsiFile psiFile = ApplicationManager.getApplication().runReadAction(new Computable<PsiFile>() {
-                public PsiFile compute() {
-                    return PsiManager.getInstance(project).findFile(virtualFile);
-                }
-            });
-
-            if (psiFile != null) lang = psiFile.getLanguageDialect();
-        }
-        if (lang == null) {
-            lang = getLanguage();
-        }
-        return lang.getSyntaxHighlighter(project, virtualFile);
-    }
-*/
 }
 

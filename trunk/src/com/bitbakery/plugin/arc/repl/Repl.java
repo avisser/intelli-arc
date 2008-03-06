@@ -2,9 +2,9 @@ package com.bitbakery.plugin.arc.repl;
 
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.project.ProjectManager;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.options.ShowSettingsUtil;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import org.apache.commons.collections.ArrayStack;
 
 import javax.swing.*;
@@ -12,10 +12,10 @@ import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.File;
 
 
 public class Repl extends JScrollPane {
@@ -71,20 +71,26 @@ public class Repl extends JScrollPane {
 
         // TODO - Does any of this need to be in the config form?
         String arcHome = component.getArcHome();
+/*
         if (arcHome == null) {
             arcHome = "/Users/kurtc/dev/arc2";
         }
+*/
 
         String schemeHome = component.getMzSchemeHome();
+/*
         if (schemeHome == null) {
             schemeHome = "/Applications/MzScheme v360";
         }
+*/
 
         // TODO - Get the right stuff into the config form...
         String replExecutable = component.getReplExecutable();
+/*
         if (replExecutable == null) {
             replExecutable = "mzscheme -m -f as.scm";
         }
+*/
 
         String scheme = schemeHome + "/bin/mzscheme";
         String arg0 = "-m";
@@ -97,7 +103,7 @@ public class Repl extends JScrollPane {
             ShowSettingsUtil.getInstance().editConfigurable(openProjects[0], component);
         }
 
-        return Runtime.getRuntime().exec(new String[] {scheme, arg0, arg1, initializationFile}, null, new File(arcHome));
+        return Runtime.getRuntime().exec(new String[]{scheme, arg0, arg1, initializationFile}, null, new File(arcHome));
     }
 
     public void execute(String replInput) {
