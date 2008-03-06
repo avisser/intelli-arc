@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootComponent" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="673" height="164"/>
+      <xy x="20" y="20" width="931" height="222"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -80,27 +80,76 @@
           <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.initializationFile"/>
         </properties>
       </component>
-      <component id="12e9" class="javax.swing.JLabel" binding="mzSchemeUrl">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeUrl"/>
-        </properties>
-      </component>
-      <component id="d30c5" class="javax.swing.JLabel" binding="arcUrl">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcUrl"/>
-        </properties>
-      </component>
       <vspacer id="e5c89">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="15"/>
+            <preferred-size width="-1" height="15"/>
+          </grid>
         </constraints>
       </vspacer>
+      <grid id="16ed6" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="26c6b" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.getMzScheme"/>
+            </properties>
+          </component>
+          <hspacer id="dc4d8">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="12e9" class="javax.swing.JLabel" binding="mzSchemeUrl">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeUrl"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="5b415" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="247cd" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.getArc"/>
+            </properties>
+          </component>
+          <hspacer id="45ee">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="d30c5" class="javax.swing.JLabel" binding="arcUrl">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcUrl"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

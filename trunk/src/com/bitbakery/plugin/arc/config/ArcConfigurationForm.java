@@ -4,6 +4,8 @@ import com.bitbakery.plugin.arc.repl.ReplApplicationComponent;
 import com.intellij.ide.BrowserUtil;
 
 import javax.swing.*;
+import java.awt.*;
+import static java.awt.Cursor.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,33 +30,43 @@ public class ArcConfigurationForm {
 
 
     public ArcConfigurationForm() {
-        mzSchemeHomeChooserButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                createFileChooser(mzSchemeHome);
-            }
-        });
-        arcHomeChooserButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                createFileChooser(arcHome);
-            }
-        });
+        addFileChooser(mzSchemeHome, mzSchemeHomeChooserButton);
+        addFileChooser(arcHome, arcHomeChooserButton);
 
-        mzSchemeUrl.addMouseListener(new MouseAdapter() {
+        enableHyperlink(mzSchemeUrl);
+        enableHyperlink(arcUrl);
+    }
+
+    private void enableHyperlink(final JLabel label) {
+        label.addMouseListener(new MouseAdapter() {
+            private Color textColor = label.getForeground();
+
+            public void mouseEntered(MouseEvent mouseEvent) {
+                label.setCursor(getPredefinedCursor(HAND_CURSOR));
+                label.setForeground(Color.BLUE);
+            }
+
+            public void mouseExited(MouseEvent mouseEvent) {
+                label.setForeground(textColor);
+                label.setCursor(getDefaultCursor());
+            }
+
             public void mouseClicked(MouseEvent mouseEvent) {
-                BrowserUtil.launchBrowser("http://www.google.com");
+                BrowserUtil.launchBrowser(label.getText());
             }
         });
-        arcUrl.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent mouseEvent) {
-                BrowserUtil.launchBrowser("http://www.google.com");
+    }
+
+    private void addFileChooser(final JTextField textField, JButton button) {
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                createFileChooser(textField);
             }
         });
     }
 
     private void createFileChooser(JTextField textField) {
-        File currentDirectory = null;
-        currentDirectory = new File(textField.getText());
-
+        File currentDirectory = new File(textField.getText());
         JFileChooser chooser = new JFileChooser(currentDirectory);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         pickFile(chooser, textField);

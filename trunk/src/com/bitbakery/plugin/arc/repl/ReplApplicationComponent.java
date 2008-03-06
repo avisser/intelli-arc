@@ -6,7 +6,6 @@ import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
-import com.intellij.openapi.options.BaseConfigurable;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
@@ -16,14 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-@State(
-        name = "ReplApplicationComponent",
-        storages = {
-        @Storage(
-                id = "main",
-                file = "$APP_CONFIG$/arc-settings.xml"
-        )})
-public class ReplApplicationComponent extends BaseConfigurable implements ApplicationComponent, Configurable, PersistentStateComponent<ReplApplicationComponent> {
+@State(name = "ReplApplicationComponent",
+        storages = {@Storage(id = "main", file = "$APP_CONFIG$/arc-settings.xml")})
+public class ReplApplicationComponent implements ApplicationComponent, Configurable, PersistentStateComponent<ReplApplicationComponent> {
 
     public String arcInitializationFile;
     public String mzSchemeHome;
