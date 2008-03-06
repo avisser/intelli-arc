@@ -16,13 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/ReplApplicationComponent.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/ReplApplicationComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcResourceBundle.properties" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcResourceBundle.properties" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcBundle.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelli-arc.iws" afterPath="$PROJECT_DIR$/intelli-arc.iws" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcBundle.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.form" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.java" />
     </list>
     <ignored path="intelli-arc.iws" />
@@ -130,7 +125,16 @@
       <file leaf-file-name="ArcConfigurationForm.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="226" selection-start="998" selection-end="998" vertical-scroll-proportion="0.29013538">
+            <state line="43" column="228" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.40618956">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BrowserUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/ide/BrowserUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="136" column="241" selection-start="4996" selection-end="4996" vertical-scroll-proportion="0.52224374">
               <folding />
             </state>
           </provider>
@@ -157,9 +161,9 @@
       <file leaf-file-name="Repl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="8" selection-start="2604" selection-end="2604" vertical-scroll-proportion="0.516441">
+            <state line="74" column="8" selection-start="2604" selection-end="2604" vertical-scroll-proportion="0.78336555">
               <folding>
-                <marker date="1204822346000" expanded="false" signature="47:728" placeholder="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -221,6 +225,10 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="intelli-arc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Libraries" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.LibraryGroupNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -816,13 +824,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/openapi/options/UnnamedConfigurable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="17" selection-start="768" selection-end="768" vertical-scroll-proportion="0.116054155">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="0" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.20039293">
@@ -900,11 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/ReplToolWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="72" column="0" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.3539652">
@@ -912,18 +908,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/ide/BrowserUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="241" selection-start="4996" selection-end="4996" vertical-scroll-proportion="0.52224374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="8" selection-start="2604" selection-end="2604" vertical-scroll-proportion="0.516441">
+        <state line="74" column="8" selection-start="2604" selection-end="2604" vertical-scroll-proportion="0.78336555">
           <folding>
-            <marker date="1204822346000" expanded="false" signature="47:728" placeholder="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/config/ArcConfigurationForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="226" selection-start="998" selection-end="998" vertical-scroll-proportion="0.29013538">
+        <state line="43" column="228" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.40618956">
           <folding />
         </state>
       </provider>
