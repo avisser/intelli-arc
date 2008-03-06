@@ -1,20 +1,18 @@
 package com.bitbakery.plugin.arc.psi;
 
+import com.bitbakery.plugin.arc.ArcIcons;
+import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.SYMBOL_FILTER;
+import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
-import com.intellij.lang.ASTNode;
 import com.intellij.util.IncorrectOperationException;
-import com.intellij.util.ArrayUtil;
-import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.SYMBOL_FILTER;
-import com.bitbakery.plugin.arc.ArcIcons;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * PSI element for Arc macro ("mac") definitions.
  */
 public class Mac extends Expression implements PsiNamedElement {
     private String name;

@@ -1,14 +1,14 @@
 package com.bitbakery.plugin.arc;
 
+import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.intellij.lang.BracePair;
 import com.intellij.lang.PairedBraceMatcher;
 import com.intellij.psi.tree.IElementType;
-import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Defines paired braces for Arc code
  */
 public class ArcBraceMatcher implements PairedBraceMatcher {
     private static final BracePair[] PAIRS = new BracePair[]{
@@ -22,15 +22,5 @@ public class ArcBraceMatcher implements PairedBraceMatcher {
 
     public boolean isPairedBracesAllowedBeforeType(@NotNull final IElementType lbraceType, @Nullable final IElementType tokenType) {
         return true;
-/*
-        return JSTokenTypes.WHITE_SPACE == tokenType
-                || JSTokenTypes.COMMENTS.contains(tokenType)
-                || tokenType == JSTokenTypes.SEMICOLON
-                || tokenType == JSTokenTypes.COMMA
-                || tokenType == JSTokenTypes.RPAR
-                || tokenType == JSTokenTypes.RBRACKET
-                || tokenType == JSTokenTypes.RBRACE
-                || null == tokenType;
-*/
     }
 }

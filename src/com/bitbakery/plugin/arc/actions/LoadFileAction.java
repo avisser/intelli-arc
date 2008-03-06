@@ -8,7 +8,7 @@ import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.project.Project;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Event handler for the "Load File" action within an Arc code editor - loads the current Arc file into the current REPL.
  */
 public class LoadFileAction extends AnAction {
 
