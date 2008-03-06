@@ -15,7 +15,7 @@ public class ArcConfigurationForm {
 
     private JTextField mzSchemeHome;
     private JTextField arcHome;
-    private JTextField replExecutable;
+    private JTextField arcInitializationFile;
 
     private JButton mzSchemeHomeChooserButton;
     private JButton arcHomeChooserButton;
@@ -56,19 +56,19 @@ public class ArcConfigurationForm {
     public void setData(ReplApplicationComponent data) {
         arcHome.setText(data.getArcHome());
         mzSchemeHome.setText(data.getMzSchemeHome());
-        replExecutable.setText(data.getReplExecutable());
+        arcInitializationFile.setText(data.getArcInitializationFile());
     }
 
     public void getData(ReplApplicationComponent data) {
         data.setArcHome(arcHome.getText());
         data.setMzSchemeHome(mzSchemeHome.getText());
-        data.setReplExecutable(replExecutable.getText());
+        data.setArcInitializationFile(arcInitializationFile.getText());
     }
 
     public boolean isModified(ReplApplicationComponent data) {
         return isModified(arcHome, data.getArcHome())
                 || isModified(mzSchemeHome, data.getMzSchemeHome())
-                || isModified(replExecutable, data.getReplExecutable());
+                || isModified(arcInitializationFile, data.getArcInitializationFile());
     }
 
     private boolean isModified(JTextField textField, String data) {

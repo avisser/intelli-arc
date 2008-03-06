@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.bitbakery.plugin.arc.config.ArcConfigurationForm">
-  <grid id="27dc6" binding="rootComponent" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rootComponent" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="549" height="164"/>
+      <xy x="20" y="20" width="673" height="144"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -11,7 +11,7 @@
       <component id="581e8" class="javax.swing.JTextField" binding="mzSchemeHome" default-binding="true">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="276" height="22"/>
+            <preferred-size width="354" height="22"/>
           </grid>
         </constraints>
         <properties/>
@@ -19,7 +19,7 @@
       <component id="fb055" class="javax.swing.JTextField" binding="arcHome" default-binding="true">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="276" height="22"/>
+            <preferred-size width="354" height="22"/>
           </grid>
         </constraints>
         <properties/>
@@ -46,30 +46,9 @@
           <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcHome"/>
         </properties>
       </component>
-      <component id="4a4c9" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="171" height="16"/>
-          </grid>
-        </constraints>
-        <properties>
-          <labelFor value="e8d80"/>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.repl"/>
-        </properties>
-      </component>
-      <component id="e8d80" class="javax.swing.JTextField" binding="replExecutable">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="276" height="22"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="mzscheme -m -f as.scm"/>
-        </properties>
-      </component>
       <component id="865fc" class="javax.swing.JButton" binding="mzSchemeHomeChooserButton">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="..."/>
@@ -77,35 +56,46 @@
       </component>
       <component id="9c02c" class="javax.swing.JButton" binding="arcHomeChooserButton">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="..."/>
         </properties>
       </component>
-      <component id="9d57" class="javax.swing.JLabel">
+      <component id="b9567" class="javax.swing.JTextField" binding="arcInitializationFile" default-binding="true">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="http://www.drscheme.com"/>
-        </properties>
-      </component>
-      <component id="b68eb" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="http://www.arclanguage.org"/>
-        </properties>
-      </component>
-      <vspacer id="b0a11">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="171" height="14"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="354" height="22"/>
           </grid>
         </constraints>
-      </vspacer>
+        <properties>
+          <text value="as.scm"/>
+        </properties>
+      </component>
+      <component id="58038" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.initializationFile"/>
+        </properties>
+      </component>
+      <component id="12e9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeUrl"/>
+        </properties>
+      </component>
+      <component id="d30c5" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcUrl"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

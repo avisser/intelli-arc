@@ -1,10 +1,12 @@
 package com.bitbakery.plugin.arc.repl;
 
+import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
 import com.intellij.openapi.application.Application;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.util.text.StringUtil;
 import org.apache.commons.collections.ArrayStack;
 
 import javax.swing.*;
@@ -32,6 +34,7 @@ public class Repl extends JScrollPane {
         setViewportView(textArea);
 
         try {
+            // TODO - If spawnArcProcess returns null, then we should NOT attempt to create a REPL tool window
             arcProcess = spawnArcProcess();
             outputWriter = new PrintWriter(arcProcess.getOutputStream(), true);
 
@@ -69,41 +72,29 @@ public class Repl extends JScrollPane {
         Application app = ApplicationManager.getApplication();
         ReplApplicationComponent component = app.getComponent(ReplApplicationComponent.class);
 
-        // TODO - Does any of this need to be in the config form?
         String arcHome = component.getArcHome();
-/*
-        if (arcHome == null) {
-            arcHome = "/Users/kurtc/dev/arc2";
-        }
-*/
-
         String schemeHome = component.getMzSchemeHome();
-/*
-        if (schemeHome == null) {
-            schemeHome = "/Applications/MzScheme v360";
-        }
-*/
+        String initializationFile = component.getArcInitializationFile();
 
-        // TODO - Get the right stuff into the config form...
-        String replExecutable = component.getReplExecutable();
-/*
-        if (replExecutable == null) {
-            replExecutable = "mzscheme -m -f as.scm";
-        }
-*/
-
-        String scheme = schemeHome + "/bin/mzscheme";
-        String arg0 = "-m";
-        String arg1 = "-f";
-        String initializationFile = "as.scm";
-
-        if (arcHome == null || schemeHome == null) {
+        if (notConfigured(arcHome, schemeHome, initializationFile)) {
             // TODO - How do we get the *current* project??
             Project[] openProjects = ProjectManager.getInstance().getOpenProjects();
-            ShowSettingsUtil.getInstance().editConfigurable(openProjects[0], component);
+            if (!ShowSettingsUtil.getInstance().editConfigurable(openProjects[0], component)) {
+                JOptionPane.showMessageDialog(null, message("config.error.replNotConfiguredMessage"), message("config.error.replNotConfiguredTitle"), JOptionPane.WARNING_MESSAGE);
+                return null;
+            }
         }
 
-        return Runtime.getRuntime().exec(new String[]{scheme, arg0, arg1, initializationFile}, null, new File(arcHome));
+        // For now, these are hard-coded. We may need more flexibility in the future (e.g., different Schemes with different args)
+        String scheme = schemeHome + "/bin/mzscheme";
+        return Runtime.getRuntime().exec(new String[]{scheme, "-m", "-f", initializationFile}, null, new File(arcHome));
+    }
+
+    private boolean notConfigured(String... args) {
+        for (String arg : args) {
+            if (StringUtil.isEmptyOrSpaces(arg)) return true;
+        }
+        return false;
     }
 
     public void execute(String replInput) {
