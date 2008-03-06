@@ -1,10 +1,13 @@
 package com.bitbakery.plugin.arc.config;
 
 import com.bitbakery.plugin.arc.repl.ReplApplicationComponent;
+import com.intellij.ide.BrowserUtil;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 /**
@@ -20,6 +23,9 @@ public class ArcConfigurationForm {
     private JButton mzSchemeHomeChooserButton;
     private JButton arcHomeChooserButton;
 
+    private JLabel arcUrl;
+    private JLabel mzSchemeUrl;
+
 
     public ArcConfigurationForm() {
         mzSchemeHomeChooserButton.addActionListener(new ActionListener() {
@@ -30,6 +36,17 @@ public class ArcConfigurationForm {
         arcHomeChooserButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 createFileChooser(arcHome);
+            }
+        });
+
+        mzSchemeUrl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent mouseEvent) {
+                BrowserUtil.launchBrowser("http://www.google.com");
+            }
+        });
+        arcUrl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent mouseEvent) {
+                BrowserUtil.launchBrowser("http://www.google.com");
             }
         });
     }
