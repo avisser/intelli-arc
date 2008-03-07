@@ -1,11 +1,11 @@
 package com.bitbakery.plugin.arc.lexer;
 
+import com.bitbakery.plugin.arc.ArcFileType;
+import com.bitbakery.plugin.arc.ArcLanguage;
+import com.bitbakery.plugin.arc.psi.ArcElementType;
+import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
-import com.intellij.psi.TokenType;
-import com.bitbakery.plugin.arc.psi.ArcElementType;
-import com.bitbakery.plugin.arc.ArcLanguage;
-import com.bitbakery.plugin.arc.ArcFileType;
 
 /**
  * Identifies all of the token types (at least, the ones we'll care about) in Arc.
@@ -69,6 +69,7 @@ public interface ArcTokenTypes {
     TokenSet BOOLEAN_LITERAL = TokenSet.create(TRUE, NIL);
 
     TokenSet LITERALS = TokenSet.create(STRING_LITERAL, NUMERIC_LITERAL, CHAR_LITERAL, TRUE, NIL);
+    TokenSet READABLE_TEXT = TokenSet.create(STRING_LITERAL, BLOCK_COMMENT, LINE_COMMENT);
 
 
     IElementType SYMBOL = new ArcElementType("symbol");

@@ -16,18 +16,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcSyntaxHighlighter.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcSyntaxHighlighter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/RunSelectionAction.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/RunSelectionAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcWordsScanner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelli-arc.iws" afterPath="$PROJECT_DIR$/intelli-arc.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Def.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Def.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementType.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcParser.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/LoadFileAction.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/LoadFileAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcResourceBundle.properties" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcResourceBundle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Mac.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Mac.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcBraceMatcher.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcBraceMatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/bitbakery/plugin/arc/psi/ArcParserTest.java" afterPath="$PROJECT_DIR$/test/com/bitbakery/plugin/arc/psi/ArcParserTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFindUsagesProvider.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFindUsagesProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" />
     </list>
     <ignored path="intelli-arc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,7 +42,20 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java" line="89" class="com.bitbakery.plugin.arc.repl.Repl" package="com.bitbakery.plugin.arc.repl">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" line="24" class="Class at Expression.java:24" package="com.bitbakery.plugin.arc.psi">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" line="32" class="Class at Expression.java:32" package="com.bitbakery.plugin.arc.psi">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -122,37 +130,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ArcParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcParser.java">
+      <file leaf-file-name="ArcParserDefinition.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcParserDefinition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="11" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.48373103">
+            <state line="41" column="226" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.29013538">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArcElementVisitor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementVisitor.java">
+      <file leaf-file-name="ArcLanguage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="3" selection-start="138" selection-end="138" vertical-scroll-proportion="0.13015184">
+            <state line="73" column="45" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.58027077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArcElementType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementType.java">
+      <file leaf-file-name="Repl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="89" selection-start="299" selection-end="299" vertical-scroll-proportion="0.13015184">
+            <state line="22" column="13" selection-start="744" selection-end="744" vertical-scroll-proportion="0.058027077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MacType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/type/MacType.java">
+      <file leaf-file-name="Repl2.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="3" selection-start="104" selection-end="104" vertical-scroll-proportion="0.13015184">
+            <state line="7" column="38" selection-start="196" selection-end="196" vertical-scroll-proportion="0.08123791">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OSProcessHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/OSProcessHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="49" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.058027077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProcessHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/ProcessHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="22" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-0.34816247">
               <folding />
             </state>
           </provider>
@@ -161,52 +187,34 @@
       <file leaf-file-name="ArcTokenTypes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="7" selection-start="3028" selection-end="3028" vertical-scroll-proportion="1.2190889">
+            <state line="71" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.7446808">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arc.flex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/arc.flex">
+      <file leaf-file-name="ParameterInfoHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/parameterInfo/ParameterInfoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="6" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.48373103">
+            <state line="22" column="17" selection-start="801" selection-end="801" vertical-scroll-proportion="0.06963249">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunSelectionAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/RunSelectionAction.java">
+      <file leaf-file-name="ExternalAnnotator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/annotation/ExternalAnnotator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="54" selection-start="487" selection-end="487" vertical-scroll-proportion="0.13015184">
+            <state line="29" column="17" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.13926499">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Macex1Action.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/Macex1Action.java">
+      <file leaf-file-name="Language.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/Language.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="214" selection-end="214" vertical-scroll-proportion="0.13015184">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadFileAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/LoadFileAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="94" selection-start="441" selection-end="441" vertical-scroll-proportion="0.13015184">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArcFoldingBuilder.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFoldingBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="76" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.5466378">
+            <state line="271" column="0" selection-start="12048" selection-end="12222" vertical-scroll-proportion="0.36750484">
               <folding />
             </state>
           </provider>
@@ -539,8 +547,8 @@
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.bitbakery.plugin.arc.repl" />
       <recent name="com.bitbakery.plugin.arc" />
+      <recent name="com.bitbakery.plugin.arc.repl" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.bitbakery.plugin.arc.config" />
@@ -749,7 +757,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32940546" order="3" />
       <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5221402" order="7" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5221402" order="7" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12854847" order="3" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959828" order="1" />
@@ -759,7 +767,7 @@
       <window_info id="PsiViewer" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299411" order="3" />
       <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959828" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32841328" order="1" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959828" order="1" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32841328" order="8" />
       <window_info id="Profile" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32841328" order="8" />
@@ -785,7 +793,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing isues with configuration settings - problems if config settings are bad, setting JFileChooser current directories, etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated some TODO comments.&#9;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -800,6 +808,7 @@
     <MESSAGE value="Configuration settings are working (almost)." />
     <MESSAGE value="Fixing isues with configuration settings - linked URLs to MzScheme and Arc, problems if config settings are bad, setting JFileChooser current directories, etc." />
     <MESSAGE value="Fixing isues with configuration settings - problems if config settings are bad, setting JFileChooser current directories, etc." />
+    <MESSAGE value="Updated some TODO comments.&#9;" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -851,114 +860,114 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFormattingModelBuilder.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/cacheBuilder/DefaultWordsScanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="3" selection-start="333" selection-end="333" vertical-scroll-proportion="0.08955224">
+        <state line="43" column="9" selection-start="1553" selection-end="1553" vertical-scroll-proportion="0.46497765">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcBraceMatcher.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFindUsagesProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="46" selection-start="780" selection-end="780" vertical-scroll-proportion="0.3044776">
+        <state line="37" column="224" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.4828614">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/structure/ArcStructureViewModel.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/documentation/DocumentationProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="3" selection-start="516" selection-end="516" vertical-scroll-proportion="0.08955224">
+        <state line="23" column="17" selection-start="836" selection-end="836" vertical-scroll-proportion="0.06963249">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/bitbakery/plugin/arc/psi/ArcParserTest.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/refactoring/DefaultRefactoringSupportProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="9" selection-start="327" selection-end="327" vertical-scroll-proportion="0.08955224">
+        <state line="25" column="13" selection-start="886" selection-end="886" vertical-scroll-proportion="0.10444874">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Mac.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/refactoring/RefactoringSupportProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="11" selection-start="990" selection-end="990" vertical-scroll-proportion="0.3761194">
+        <state line="26" column="39" selection-start="946" selection-end="946" vertical-scroll-proportion="0.116054155">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Def.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/refactoring/NamesValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="11" selection-start="932" selection-end="932" vertical-scroll-proportion="0.3761194">
+        <state line="25" column="17" selection-start="916" selection-end="916" vertical-scroll-proportion="0.12765957">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcParser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcParserDefinition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="11" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.48373103">
+        <state line="41" column="226" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.29013538">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementVisitor.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/annotation/ExternalAnnotator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="3" selection-start="138" selection-end="138" vertical-scroll-proportion="0.13015184">
+        <state line="29" column="17" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.13926499">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/ArcElementType.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/parameterInfo/ParameterInfoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="89" selection-start="299" selection-end="299" vertical-scroll-proportion="0.13015184">
+        <state line="22" column="17" selection-start="801" selection-end="801" vertical-scroll-proportion="0.06963249">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/type/MacType.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/lang/Language.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="3" selection-start="104" selection-end="104" vertical-scroll-proportion="0.13015184">
+        <state line="271" column="0" selection-start="12048" selection-end="12222" vertical-scroll-proportion="0.36750484">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="7" selection-start="3028" selection-end="3028" vertical-scroll-proportion="1.2190889">
+        <state line="71" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.7446808">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/arc.flex">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="6" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.48373103">
+        <state line="73" column="45" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.58027077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/RunSelectionAction.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="54" selection-start="487" selection-end="487" vertical-scroll-proportion="0.13015184">
+        <state line="22" column="13" selection-start="744" selection-end="744" vertical-scroll-proportion="0.058027077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/Macex1Action.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="214" selection-end="214" vertical-scroll-proportion="0.13015184">
+        <state line="7" column="38" selection-start="196" selection-end="196" vertical-scroll-proportion="0.08123791">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/actions/LoadFileAction.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/OSProcessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="94" selection-start="441" selection-end="441" vertical-scroll-proportion="0.13015184">
+        <state line="28" column="49" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.058027077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFoldingBuilder.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/ProcessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="76" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.5466378">
+        <state line="30" column="22" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-0.34816247">
           <folding />
         </state>
       </provider>
