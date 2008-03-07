@@ -16,13 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcWordsScanner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/intelli-arc.iws" afterPath="$PROJECT_DIR$/intelli-arc.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFindUsagesProvider.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcFindUsagesProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/psi/Expression.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java" afterPath="$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java" />
     </list>
     <ignored path="intelli-arc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,8 +137,10 @@
       <file leaf-file-name="ArcLanguage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="45" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.58027077">
-              <folding />
+            <state line="75" column="45" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.58027077">
+              <folding>
+                <marker date="1204912809000" expanded="false" signature="43:1364" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,11 +154,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Repl2.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Repl2.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="38" selection-start="196" selection-end="196" vertical-scroll-proportion="0.08123791">
-              <folding />
+            <state line="23" column="225" selection-start="762" selection-end="762" vertical-scroll-proportion="0.26692456">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,13 +168,13 @@
       <file leaf-file-name="OSProcessHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/OSProcessHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="49" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.058027077">
+            <state line="199" column="63" selection-start="5753" selection-end="5753" vertical-scroll-proportion="0.2630561">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProcessHandler.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ProcessHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/ProcessHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="30" column="22" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-0.34816247">
@@ -188,7 +187,9 @@
         <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="71" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.7446808">
-              <folding />
+              <folding>
+                <marker date="1204912809000" expanded="false" signature="48:299" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -718,7 +719,7 @@
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_MODE" value="true" />
     <option name="AUTOSCROLL_FROM_SOURCE" value="false" />
-    <option name="ACTIVE_ACTIONS" value="" />
+    <option name="ACTIVE_ACTIONS" value="ALPHA_COMPARATOR" />
   </component>
   <component name="SvnConfiguration">
     <option name="USER" value="" />
@@ -793,7 +794,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated some TODO comments.&#9;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added trivial &quot;readable text&quot; functionality to enable word completion in comments and string literals. Trying to make a more robust REPL using JetBrains classes, guided by the Ruby plugin.&#9;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -809,6 +810,7 @@
     <MESSAGE value="Fixing isues with configuration settings - linked URLs to MzScheme and Arc, problems if config settings are bad, setting JFileChooser current directories, etc." />
     <MESSAGE value="Fixing isues with configuration settings - problems if config settings are bad, setting JFileChooser current directories, etc." />
     <MESSAGE value="Updated some TODO comments.&#9;" />
+    <MESSAGE value="Added trivial &quot;readable text&quot; functionality to enable word completion in comments and string literals. Trying to make a more robust REPL using JetBrains classes, guided by the Ruby plugin.&#9;" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -933,14 +935,18 @@
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/lexer/ArcTokenTypes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="71" column="88" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.7446808">
-          <folding />
+          <folding>
+            <marker date="1204912809000" expanded="false" signature="48:299" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/ArcLanguage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="45" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.58027077">
-          <folding />
+        <state line="75" column="45" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.58027077">
+          <folding>
+            <marker date="1204912809000" expanded="false" signature="43:1364" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -951,24 +957,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/ProcessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="38" selection-start="196" selection-end="196" vertical-scroll-proportion="0.08123791">
+        <state line="30" column="22" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-0.34816247">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/OSProcessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="49" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.058027077">
+        <state line="199" column="63" selection-start="5753" selection-end="5753" vertical-scroll-proportion="0.2630561">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/execution/process/ProcessHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bitbakery/plugin/arc/repl/Repl2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="22" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-0.34816247">
-          <folding />
+        <state line="23" column="225" selection-start="762" selection-end="762" vertical-scroll-proportion="0.26692456">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
