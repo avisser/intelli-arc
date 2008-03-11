@@ -1,6 +1,5 @@
 package com.bitbakery.plugin.arc.config;
 
-import com.bitbakery.plugin.arc.repl.ReplApplicationComponent;
 import com.intellij.ide.BrowserUtil;
 
 import javax.swing.*;
@@ -82,19 +81,19 @@ public class ArcConfigurationForm {
         return rootComponent;
     }
 
-    public void setData(ReplApplicationComponent data) {
+    public void setData(ArcConfiguration data) {
         arcHome.setText(data.getArcHome());
         mzSchemeHome.setText(data.getMzSchemeHome());
         arcInitializationFile.setText(data.getArcInitializationFile());
     }
 
-    public void getData(ReplApplicationComponent data) {
+    public void getData(ArcConfiguration data) {
         data.setArcHome(arcHome.getText());
         data.setMzSchemeHome(mzSchemeHome.getText());
         data.setArcInitializationFile(arcInitializationFile.getText());
     }
 
-    public boolean isModified(ReplApplicationComponent data) {
+    public boolean isModified(ArcConfiguration data) {
         return isModified(arcHome, data.getArcHome())
                 || isModified(mzSchemeHome, data.getMzSchemeHome())
                 || isModified(arcInitializationFile, data.getArcInitializationFile());

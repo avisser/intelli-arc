@@ -1,38 +1,54 @@
 package com.bitbakery.plugin.arc.repl;
 
-//import com.bitbakery.plugin.arc.LispIcons;
-
 import com.bitbakery.plugin.arc.ArcIcons;
 import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import com.bitbakery.plugin.arc.config.ArcConfiguration;
+import com.intellij.execution.ExecutionException;
+import com.intellij.execution.filters.TextConsoleBuilder;
+import com.intellij.execution.filters.TextConsoleBuilderFactory;
+import com.intellij.execution.process.OSProcessHandler;
+import com.intellij.execution.process.ProcessTerminatedListener;
+import com.intellij.execution.ui.ConsoleView;
+import com.intellij.execution.ui.ConsoleViewContentType;
+import com.intellij.openapi.application.Application;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.editor.impl.EditorImpl;
+import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.util.Icons;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class ReplToolWindow implements ProjectComponent {
 
     private Project myProject;
-    private ToolWindow myToolWindow;
-    private JTabbedPane tabbedPane;
+    private ConsoleView view;
+    private OSProcessHandler processHandler;
 
     public ReplToolWindow(Project project) {
         myProject = project;
     }
 
     public void projectOpened() {
-        initToolWindow();
+        try {
+            initToolWindow();
+        } catch (Exception e) {
+            // TODO - Handle me for real...
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     public void projectClosed() {
-        unregisterToolWindow();
+        ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
+        processHandler.destroyProcess();
     }
 
     public void initComponent() {
@@ -40,91 +56,95 @@ public class ReplToolWindow implements ProjectComponent {
     }
 
     public void disposeComponent() {
-        // Close out any open REPLs
-        for (Component repl : tabbedPane.getComponents()) {
-            ((Repl) repl).close();
-        }
+        // TODO - Is there any way I can get this guy called even on abnormal process termination...? Or at least keep mzscheme from shooting of into outer space??
+        processHandler.destroyProcess();
     }
 
-    public Repl getCurrentRepl() {
-        return (Repl) tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+    public void writeToRepl(String s) {
+        view.print(s, ConsoleViewContentType.USER_INPUT);
+        view.print("\r\n", ConsoleViewContentType.USER_INPUT); // TODO - ???
     }
-
 
     @NotNull
     public String getComponentName() {
         return "ReplToolWindow.ArcPlugin";
     }
 
-    private void initToolWindow() {
-        ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(myProject);
+    private void initToolWindow() throws ExecutionException, IOException {
+        if (myProject != null) {
+            ToolWindowManager manager = ToolWindowManager.getInstance(myProject);
+            TextConsoleBuilderFactory factory = TextConsoleBuilderFactory.getInstance();
+            TextConsoleBuilder builder = factory.createBuilder(myProject);
 
-        tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
-        tabbedPane.setComponentPopupMenu(createPopupMenu());
+            // TODO - Ctrl-v (paste) should trim string before dropping
+            // TODO - Drag-n-drop text isn't working from editor to console... why not?
+            view = builder.getConsole();
+            view.setHelpId("Kurt's Help ID");
 
-        JPanel myContentPanel = new JPanel(new BorderLayout());
-        myContentPanel.add(tabbedPane, BorderLayout.CENTER);
-        myContentPanel.add(createButtonPanel(), BorderLayout.WEST);
+            // TODO - AAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGGGGGGGGGHHHHHHH!!!
 
-        tabbedPane.addTab(message("repl.title"), new Repl());
+            Application app = ApplicationManager.getApplication();
+            ArcConfiguration component = app.getComponent(ArcConfiguration.class);
 
-        myToolWindow = toolWindowManager.registerToolWindow(message("repl.toolWindowId"), myContentPanel, ToolWindowAnchor.BOTTOM);
-        myToolWindow.setAnchor(ToolWindowAnchor.BOTTOM, null);
-        myToolWindow.setIcon(ArcIcons.ARC_REPL_ICON);
-    }
+            String arcHome = component.getArcHome();
+            String schemeHome = component.getMzSchemeHome();
+            String initializationFile = component.getArcInitializationFile();
 
-    private JPanel createButtonPanel() {
-        // TODO - Modify the buttons to match look and feel of other open/close tab buttons - see "Add" and "Cancel" icons in the IntelliJ resource bundle...
-        // TODO - See how we can use the built-in tool window toolbars...
-        JButton addButton = new JButton(Icons.ADD_ICON);
-        addButton.setToolTipText(message("repl.open"));
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                tabbedPane.addTab(message("repl.title"), new Repl());
-                tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
-            }
-        });
-
-        // TODO - We should also close the tab and kill the process if the user enters the right Lisp command (usually, (quit), or some such)
-        JButton removeButton = new JButton(Icons.DELETE_ICON);
-        removeButton.setToolTipText(message("repl.close"));
-        removeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (tabbedPane.getSelectedIndex() > -1) {
-                    tabbedPane.removeTabAt(tabbedPane.getSelectedIndex());
-                    getCurrentRepl().close();
+            if (notConfigured(arcHome, schemeHome, initializationFile)) {
+                if (!ShowSettingsUtil.getInstance().editConfigurable(myProject, component)) {
+                    // TODO - This isn't doing what you intend...
+                    JOptionPane.showMessageDialog(null, message("config.error.replNotConfiguredMessage"), message("config.error.replNotConfiguredTitle"), JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
             }
-        });
 
-        JPanel buttonPanel = new JPanel(new GridLayout(5, 1));
-        buttonPanel.add(addButton);
-        buttonPanel.add(removeButton);
-        return buttonPanel;
-    }
+            // For now, these are hard-coded. We may need more flexibility in the future (e.g., different Schemes with different args)
+            String scheme = schemeHome + "/bin/mzscheme";
+            String[] myCommandLine = new String[]{scheme, "-m", "-f", initializationFile};
 
-    private JPopupMenu createPopupMenu() {
-        JPopupMenu menu = new JPopupMenu();
-        JMenuItem item = new JMenuItem(message("repl.rename"));
-        item.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                int tabIndex = tabbedPane.getSelectedIndex();
-                if (tabIndex > -1) {
-                    String oldTitle = tabbedPane.getTitleAt(tabIndex);
-                    String newTitle = (String) JOptionPane.showInputDialog(
-                            (Component) actionEvent.getSource(), message("repl.newName"), message("repl.rename"),
-                            JOptionPane.PLAIN_MESSAGE, null, null, oldTitle);
-                    if (newTitle != null) {
-                        tabbedPane.setTitleAt(tabIndex, newTitle);
-                    }
-                }
+            Process p = Runtime.getRuntime().exec(myCommandLine, null, new File(arcHome));
+
+            StringBuffer b = new StringBuffer();
+            for (String s : myCommandLine) {
+                b.append(s);
+                b.append(" ");
             }
-        });
-        menu.add(item);
-        return menu;
+            processHandler = new OSProcessHandler(p, b.toString());
+
+            ProcessTerminatedListener.attach(processHandler);
+            processHandler.startNotify();
+
+            view.attachToProcess(processHandler);
+
+            String id = message("repl.title");
+            ToolWindow window = manager.registerToolWindow(id, view.getComponent(), ToolWindowAnchor.BOTTOM);
+            window.setIcon(ArcIcons.ARC_REPL_ICON);
+
+
+            JComponent c = view.getComponent();
+            final Component editorPane = c.getComponent(0);
+
+            // TODO - How in the holy fucking hell do we get the component????????
+            EditorImpl editorEx = (EditorImpl) editorPane;
+
+            editorEx.setBackgroundColor(Color.YELLOW);
+/*
+            editorPane.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent event) {
+                    editorPane.
+                    view.scrollTo(view.getContentSize());
+                }
+            });
+*/
+
+            view.scrollTo(view.getContentSize());
+        }
     }
 
-    private void unregisterToolWindow() {
-        ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
+    private boolean notConfigured(String... args) {
+        for (String arg : args) {
+            if (StringUtil.isEmptyOrSpaces(arg)) return true;
+        }
+        return false;
     }
 }

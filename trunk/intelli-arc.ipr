@@ -292,7 +292,7 @@
       <module fileurl="file://$PROJECT_DIR$/intelli-arc.iml" filepath="$PROJECT_DIR$/intelli-arc.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA 7718" project-jdk-type="IDEA JDK">
+  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA 7744" project-jdk-type="IDEA JDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="RUBY_DOC_SETTINGS">
@@ -317,12 +317,5 @@
     <mapping directory="$PROJECT_DIR$" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
-  <component name="libraryTable">
-    <library name="IntelliJ">
-      <CLASSES />
-      <JAVADOC />
-      <SOURCES />
-    </library>
-  </component>
 </project>
 
