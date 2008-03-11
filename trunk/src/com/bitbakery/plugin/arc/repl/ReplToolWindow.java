@@ -56,8 +56,6 @@ public class ReplToolWindow implements ProjectComponent {
 
     public void disposeComponent() {
         ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
-
-        // TODO - Is there any way I can get this guy called even on abnormal process termination...? Or at least keep mzscheme from shooting of into outer space??
         processHandler.destroyProcess();
     }
 
