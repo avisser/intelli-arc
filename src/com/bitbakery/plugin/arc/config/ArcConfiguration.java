@@ -1,7 +1,7 @@
-package com.bitbakery.plugin.arc.repl;
+package com.bitbakery.plugin.arc.config;
 
 import com.bitbakery.plugin.arc.ArcIcons;
-import com.bitbakery.plugin.arc.config.ArcConfigurationForm;
+import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
@@ -15,9 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-@State(name = "ReplApplicationComponent",
+@State(name = "ArcConfiguration",
         storages = {@Storage(id = "main", file = "$APP_CONFIG$/arc-settings.xml")})
-public class ReplApplicationComponent implements ApplicationComponent, Configurable, PersistentStateComponent<ReplApplicationComponent> {
+public class ArcConfiguration implements ApplicationComponent, Configurable, PersistentStateComponent<ArcConfiguration> {
 
     public String arcInitializationFile;
     public String mzSchemeHome;
@@ -36,7 +36,7 @@ public class ReplApplicationComponent implements ApplicationComponent, Configura
 
     @NotNull
     public String getComponentName() {
-        return "ReplApplicationComponent";
+        return "ArcConfiguration";
     }
 
 
@@ -67,7 +67,7 @@ public class ReplApplicationComponent implements ApplicationComponent, Configura
 
     @Nls
     public String getDisplayName() {
-        return com.bitbakery.plugin.arc.ArcResourceBundle.message("plugin.arc.name");
+        return message("plugin.arc.name");
     }
 
     public Icon getIcon() {
@@ -109,11 +109,11 @@ public class ReplApplicationComponent implements ApplicationComponent, Configura
         form = null;
     }
 
-    public ReplApplicationComponent getState() {
+    public ArcConfiguration getState() {
         return this;
     }
 
-    public void loadState(ReplApplicationComponent that) {
+    public void loadState(ArcConfiguration that) {
         this.mzSchemeHome = that.mzSchemeHome;
         this.arcHome = that.arcHome;
         this.arcInitializationFile = that.arcInitializationFile;

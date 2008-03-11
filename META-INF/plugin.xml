@@ -17,7 +17,7 @@
             <implementation-class>com.bitbakery.plugin.arc.ArcSupportLoader</implementation-class>
         </component>
         <component>
-            <implementation-class>com.bitbakery.plugin.arc.repl.ReplApplicationComponent</implementation-class>
+            <implementation-class>com.bitbakery.plugin.arc.config.ArcConfiguration</implementation-class>
         </component>
     </application-components>
 

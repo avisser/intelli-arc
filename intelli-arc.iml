@@ -7,9 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="IDEA 7718" jdkType="IDEA JDK" />
+    <orderEntry type="jdk" jdkName="IDEA 7744" jdkType="IDEA JDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="IntelliJ" level="project" />
     <orderEntryProperties />
   </component>
 </module>

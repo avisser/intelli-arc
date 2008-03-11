@@ -1,6 +1,5 @@
 package com.bitbakery.plugin.arc.actions;
 
-import com.bitbakery.plugin.arc.repl.Repl;
 import com.bitbakery.plugin.arc.repl.ReplToolWindow;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -19,8 +18,6 @@ public class RunSelectionAction extends AnAction {
 
         Project project = e.getData(DataKeys.PROJECT);
         ReplToolWindow replToolWindow = (ReplToolWindow) project.getComponent("ReplToolWindow.ArcPlugin");
-        Repl repl = replToolWindow.getCurrentRepl();
-
-        repl.execute(text);
+        replToolWindow.writeToRepl(text);
     }
 }
