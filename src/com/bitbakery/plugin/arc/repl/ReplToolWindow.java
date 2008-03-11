@@ -2,39 +2,41 @@ package com.bitbakery.plugin.arc.repl;
 
 import com.bitbakery.plugin.arc.ArcIcons;
 import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
-import com.bitbakery.plugin.arc.config.ArcConfiguration;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.filters.TextConsoleBuilder;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
-import com.intellij.execution.process.OSProcessHandler;
+import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.process.ProcessTerminatedListener;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
-import com.intellij.openapi.application.Application;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.editor.impl.EditorComponentImpl;
 import com.intellij.openapi.editor.impl.EditorImpl;
-import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.ui.JScrollPane2;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class ReplToolWindow implements ProjectComponent {
 
     private Project myProject;
     private ConsoleView view;
-    private OSProcessHandler processHandler;
+    private ProcessHandler processHandler;
 
     public ReplToolWindow(Project project) {
         myProject = project;
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                disposeComponent();
+            }
+        });
     }
 
     public void projectOpened() {
@@ -47,15 +49,14 @@ public class ReplToolWindow implements ProjectComponent {
     }
 
     public void projectClosed() {
-        ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
-        processHandler.destroyProcess();
     }
 
     public void initComponent() {
-        // empty
     }
 
     public void disposeComponent() {
+        ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
+
         // TODO - Is there any way I can get this guy called even on abnormal process termination...? Or at least keep mzscheme from shooting of into outer space??
         processHandler.destroyProcess();
     }
@@ -72,79 +73,48 @@ public class ReplToolWindow implements ProjectComponent {
 
     private void initToolWindow() throws ExecutionException, IOException {
         if (myProject != null) {
+            TextConsoleBuilder builder = TextConsoleBuilderFactory.getInstance().createBuilder(myProject);
+            view = builder.getConsole();
+
+            // TODO - What does the "help ID" give us??
+            // view.setHelpId("Kurt's Help ID");
+
+            processHandler = new ArcProcessHandler(myProject);
+            ProcessTerminatedListener.attach(processHandler);
+            processHandler.startNotify();
+            view.attachToProcess(processHandler);
+
             ToolWindowManager manager = ToolWindowManager.getInstance(myProject);
-            TextConsoleBuilderFactory factory = TextConsoleBuilderFactory.getInstance();
-            TextConsoleBuilder builder = factory.createBuilder(myProject);
+            ToolWindow window = manager.registerToolWindow(message("repl.title"), view.getComponent(), ToolWindowAnchor.BOTTOM);
+            window.setIcon(ArcIcons.ARC_REPL_ICON);
+
+            final EditorImpl e = getEditor();
+            e.getContentComponent().addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent event) {
+                    e.getCaretModel().moveToOffset(view.getContentSize());
+                }
+            });
+            e.getSettings().setLineNumbersShown(true);
+
+            // This is how we can add add'l tooling to our REPL window!
+            // e.setHeaderComponent(new JLabel("Only a test"));
 
             // TODO - Ctrl-v (paste) should trim string before dropping
             // TODO - Drag-n-drop text isn't working from editor to console... why not?
-            view = builder.getConsole();
-            view.setHelpId("Kurt's Help ID");
-
-            // TODO - AAAAAAAAAAAAAAAAAAAAAUUUUUUUUUUUUUUUUUUUUGGGGGGGGGGGGGGGGGGGGHHHHHHH!!!
-
-            Application app = ApplicationManager.getApplication();
-            ArcConfiguration component = app.getComponent(ArcConfiguration.class);
-
-            String arcHome = component.getArcHome();
-            String schemeHome = component.getMzSchemeHome();
-            String initializationFile = component.getArcInitializationFile();
-
-            if (notConfigured(arcHome, schemeHome, initializationFile)) {
-                if (!ShowSettingsUtil.getInstance().editConfigurable(myProject, component)) {
-                    // TODO - This isn't doing what you intend...
-                    JOptionPane.showMessageDialog(null, message("config.error.replNotConfiguredMessage"), message("config.error.replNotConfiguredTitle"), JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-            }
-
-            // For now, these are hard-coded. We may need more flexibility in the future (e.g., different Schemes with different args)
-            String scheme = schemeHome + "/bin/mzscheme";
-            String[] myCommandLine = new String[]{scheme, "-m", "-f", initializationFile};
-
-            Process p = Runtime.getRuntime().exec(myCommandLine, null, new File(arcHome));
-
-            StringBuffer b = new StringBuffer();
-            for (String s : myCommandLine) {
-                b.append(s);
-                b.append(" ");
-            }
-            processHandler = new OSProcessHandler(p, b.toString());
-
-            ProcessTerminatedListener.attach(processHandler);
-            processHandler.startNotify();
-
-            view.attachToProcess(processHandler);
-
-            String id = message("repl.title");
-            ToolWindow window = manager.registerToolWindow(id, view.getComponent(), ToolWindowAnchor.BOTTOM);
-            window.setIcon(ArcIcons.ARC_REPL_ICON);
-
-
-            JComponent c = view.getComponent();
-            final Component editorPane = c.getComponent(0);
-
-            // TODO - How in the holy fucking hell do we get the component????????
-            EditorImpl editorEx = (EditorImpl) editorPane;
-
-            editorEx.setBackgroundColor(Color.YELLOW);
-/*
-            editorPane.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent event) {
-                    editorPane.
-                    view.scrollTo(view.getContentSize());
-                }
-            });
-*/
-
-            view.scrollTo(view.getContentSize());
+            // Unfortunately, the following two lines do nothing to make either of the above things happen...
+            //e.getSettings().setDndEnabled(true);
+            //e.getContentComponent().getDropTarget().setActive(true);
         }
     }
 
-    private boolean notConfigured(String... args) {
-        for (String arg : args) {
-            if (StringUtil.isEmptyOrSpaces(arg)) return true;
-        }
-        return false;
+    /**
+     * A bit of a hack; needed until JetBrains opens up the ConsoleView class.
+     */
+    private EditorImpl getEditor() {
+        final JPanel editorPanel = (JPanel) view.getComponent().getComponent(0);
+        JScrollPane2 scrollPane = (JScrollPane2) editorPanel.getComponents()[1];
+        JViewport port = (JViewport) scrollPane.getComponents()[0];
+        EditorComponentImpl ed = (EditorComponentImpl) port.getComponents()[0];
+        return ed.getEditor();
     }
 }

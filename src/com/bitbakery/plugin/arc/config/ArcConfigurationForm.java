@@ -29,6 +29,8 @@ public class ArcConfigurationForm {
 
 
     public ArcConfigurationForm() {
+        arcInitializationFile.setText("as.scm");
+
         addFileChooser(mzSchemeHome, mzSchemeHomeChooserButton);
         addFileChooser(arcHome, arcHomeChooserButton);
 
