@@ -92,7 +92,7 @@ public class ReplToolWindow implements ProjectComponent {
                     e.getCaretModel().moveToOffset(view.getContentSize());
                 }
             });
-            e.getSettings().setLineNumbersShown(true);
+            //e.getSettings().setLineNumbersShown(true);
 
             // This is how we can add add'l tooling to our REPL window!
             // e.setHeaderComponent(new JLabel("Only a test"));
