@@ -32,16 +32,9 @@ public class ArcSupportLoader extends FileTypeFactory implements ApplicationComp
     }
 
 /*
+TODO - See Javascript plugin for good examples of inspection goodies
     public Class[] getInspectionClasses() {
         return new Class[]{
-                JSUnresolvedVariableInspection.class,
-                JSUndeclaredVariableInspection.class,
-                JSUntypedDeclarationInspection.class,
-                JSUnresolvedFunctionInspection.class,
-                JSDuplicatedDeclarationInspection.class,
-                JSDeprecatedSymbolsInspection.class,
-                JSUnusedLocalSymbolsInspection.class,
-                JSShowOverridingMarkersInspection.class
         };
     }
 */

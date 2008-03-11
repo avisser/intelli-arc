@@ -36,13 +36,14 @@ Admittedly, the plugin doesn't yet have much IDE-goodness...
 
 Known Issues
 ------------
-- The REPL has some funky behavior, which is due to my using the ConsoleView class,
-   which isn't extendable.
+- The lexer is messing up block comments, betraying my sad ignorance of regexes.
+- The REPL doesn't currently support dragging and dropping text from the editor.
 - In principle, the plugin should work on any platform that runs IntelliJ and MzScheme.
    In practice, I've only tested it on my machine - and Intel-based Mac running 10.4.
 - Most of the built-in tools that look available, aren't (e.g., rename refactoring).
 - I haven't yet provided any localizations.
 - I get a weird Arc error when I run MzScheme 360 and arc2, but I think this is an Arc thing.
+- ...and much, much more!
 
 
 
@@ -70,5 +71,5 @@ Common Lisp plugin for Eclipse.
 
 
 
-Thanks in advance for your patience and feedback,
+Thanks in advance for your patience and your feedback,
 Kurt Christensen
