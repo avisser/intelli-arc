@@ -1,11 +1,19 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
-<idea-plugin>
-    <name>Arc language plugin</name>
-    <description>Creates an environment for developing Arc applications</description>
+<idea-plugin url="http://code.google.com/p/intelli-arc/">
+    <name>Arc</name>
     <version>0.1</version>
+    <category>Custom Languages</category>
     <vendor>The Bit Bakery</vendor>
     <idea-version since-build="7718"/>
+
+    <description>Creates an environment for creating Arc code, including syntax highlighting, simple structure view, and
+        a REPL.
+    </description>
+
+    <change-notes>Initial deployment.</change-notes>
+
     <resource-bundle>com.bitbakery.plugin.arc.ArcResourceBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.bitbakery.plugin.arc.ArcSupportLoader"/>
         <colorSettingsPage implementation="com.bitbakery.plugin.arc.ArcColorsPage"/>
