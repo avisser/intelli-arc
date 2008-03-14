@@ -37,6 +37,7 @@ Admittedly, the plugin doesn't yet have much IDE-goodness...
 Known Issues
 ------------
 - The lexer is messing up block comments, betraying my sad ignorance of regexes.
+- Abnormal termination from debug mode will leave MzScheme running, quickly eating all your RAM.
 - The REPL doesn't currently support dragging and dropping text from the editor.
 - In principle, the plugin should work on any platform that runs IntelliJ and MzScheme.
    In practice, I've only tested it on my machine - and Intel-based Mac running 10.4.

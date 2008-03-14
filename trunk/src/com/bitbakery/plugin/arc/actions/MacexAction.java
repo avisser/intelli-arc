@@ -1,27 +1,24 @@
 package com.bitbakery.plugin.arc.actions;
 
+import com.bitbakery.plugin.arc.psi.Mac;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataKeys;
-import static com.intellij.openapi.actionSystem.DataKeys.FILE_TEXT;
-import com.intellij.openapi.editor.Editor;
+import com.intellij.psi.PsiElement;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Displays macroexpansion ("macex") for the currently selected macro definition
  */
 public class MacexAction extends AnAction {
 
-    // TODO: QUESTION - How do I get the current editor??
     public void actionPerformed(AnActionEvent e) {
-        String fileText = e.getData(FILE_TEXT);    // WOOOOOOOOOOOOOOOOO HOOOOOOOOOOOOOOOOO!!!
-        System.out.println(fileText);
-        Editor ed = e.getData(DataKeys.EDITOR);
-        //TextEditorComponent textEd = ed.getComponent();
 
-        // TODO: There are data keys for the current PsiElement... we just need to pull that.
+        PsiElement mac = e.getData(DataKeys.PSI_ELEMENT);
 
-
-        // TODO: Note that there are all sorts of good "models" hanging off the Editor!!
-        System.out.println(ed.getSelectionModel().getSelectedText());
+        // TODO: This doesn't totally work, because mac (and other elements) don't have the correct text range
+        if (mac instanceof Mac) {
+            // TODO: Display tooltip window...?
+            System.out.println("mac = " + ((Mac) mac).getName());
+        }
     }
 }
