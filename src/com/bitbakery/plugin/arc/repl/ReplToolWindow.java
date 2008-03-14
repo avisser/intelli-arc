@@ -20,6 +20,13 @@ import com.intellij.ui.JScrollPane2;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -86,12 +93,48 @@ public class ReplToolWindow implements ProjectComponent {
             ToolWindow window = manager.registerToolWindow(message("repl.title"), view.getComponent(), ToolWindowAnchor.BOTTOM);
             window.setIcon(ArcIcons.ARC_REPL_ICON);
 
-            final EditorImpl e = getEditor();
-            e.getContentComponent().addKeyListener(new KeyAdapter() {
+            final EditorImpl repl = getReplContent();
+            repl.getContentComponent().addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent event) {
-                    e.getCaretModel().moveToOffset(view.getContentSize());
+                    repl.getCaretModel().moveToOffset(view.getContentSize());
                 }
             });
+            repl.getContentComponent().addFocusListener(new FocusListener() {
+                public void focusGained(FocusEvent event) {
+                    repl.getCaretModel().moveToOffset(view.getContentSize());
+                }
+
+                public void focusLost(FocusEvent event) {
+                    // Do nothing
+                }
+            });
+
+/*
+            // TODO - Register TransferHandler with the *code* editor; we *never* want to move, only copy. Also, we'd like a custom icon.
+            e.getContentComponent().setTransferHandler(new TransferHandler() {
+
+                public Icon getVisualRepresentation(Transferable transferable) {
+                    return ArcIcons.ARC_LARGE_ICON;
+                }
+            });
+*/
+
+            repl.getContentComponent().setDropTarget(new DropTarget() {
+                public synchronized void drop(DropTargetDropEvent event) {
+                    try {
+                        Transferable transferable = event.getTransferable();
+                        String s = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+                        view.print(s.trim(), ConsoleViewContentType.USER_INPUT);
+                        event.dropComplete(true);
+
+                    } catch (UnsupportedFlavorException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
             //e.getSettings().setLineNumbersShown(true);
 
             // This is how we can add add'l tooling to our REPL window!
@@ -108,7 +151,7 @@ public class ReplToolWindow implements ProjectComponent {
     /**
      * A bit of a hack; needed until JetBrains opens up the ConsoleView class.
      */
-    private EditorImpl getEditor() {
+    private EditorImpl getReplContent() {
         final JPanel editorPanel = (JPanel) view.getComponent().getComponent(0);
         JScrollPane2 scrollPane = (JScrollPane2) editorPanel.getComponents()[1];
         JViewport port = (JViewport) scrollPane.getComponents()[0];
