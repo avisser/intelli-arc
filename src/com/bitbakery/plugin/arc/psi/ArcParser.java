@@ -42,7 +42,6 @@ public class ArcParser implements PsiParser {
 
         builder.advanceLexer();
 
-        // TODO - Here's where we can test to see if this is a def, mac or otherwise
         IElementType token = builder.getTokenType();
         if (token == DEF) {
             // TODO - We need specialized handling for parameter lists and such, methinks...
@@ -61,6 +60,10 @@ public class ArcParser implements PsiParser {
 
     }
 
+    /**
+     * Enter: Lexer is pointed at the first token of an expression - def, mac, =, fn, or a token
+     * Exit: Lexer is pointed immediatelytely after the closing right paren, or at the end-of-file
+     */
     private void parseRest(PsiBuilder builder, PsiBuilder.Marker marker, IElementType type) {
         IElementType token;
         while (!builder.eof()) {
