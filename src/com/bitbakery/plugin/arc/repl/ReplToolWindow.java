@@ -63,7 +63,9 @@ public class ReplToolWindow implements ProjectComponent {
 
     public void disposeComponent() {
         ToolWindowManager.getInstance(myProject).unregisterToolWindow(message("repl.toolWindowId"));
-        processHandler.destroyProcess();
+        if (processHandler != null) {
+            processHandler.destroyProcess();
+        }
     }
 
     public void requestFocus() {

@@ -11,7 +11,8 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.options.ShowSettingsUtil;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.SystemInfo;
+import static com.intellij.openapi.util.SystemInfo.isMac;
+import static com.intellij.openapi.util.SystemInfo.isWindows;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.CharsetToolkit;
 import com.intellij.util.Alarm;
@@ -70,7 +71,7 @@ public class ArcProcessHandler extends ProcessHandler {
         }
 
         // For now, these are hard-coded. We may need more flexibility in the future (e.g., different Schemes with different args)
-        String exe = SystemInfo.isWindows ? "/MzScheme.exe" : "/bin/mzscheme";
+        String exe = isWindows ? "/MzScheme.exe" : isMac ? "/bin/mzscheme" : "/mzscheme";
         String scheme = arcConfig.getMzSchemeHome() + exe;
         String[] myCommandLine = new String[]{scheme, "-m", "-f", arcConfig.getArcInitializationFile()};
 
