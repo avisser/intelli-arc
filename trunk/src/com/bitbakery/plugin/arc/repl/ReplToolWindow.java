@@ -66,6 +66,10 @@ public class ReplToolWindow implements ProjectComponent {
         processHandler.destroyProcess();
     }
 
+    public void requestFocus() {
+        view.getPreferredFocusableComponent().requestFocusInWindow();
+    }
+
     public void writeToRepl(String s) {
         view.print(s, ConsoleViewContentType.USER_INPUT);
         view.print("\r\n", ConsoleViewContentType.USER_INPUT); // TODO - ???
