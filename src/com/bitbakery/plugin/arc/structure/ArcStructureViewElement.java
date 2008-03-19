@@ -1,9 +1,6 @@
 package com.bitbakery.plugin.arc.structure;
 
-import com.bitbakery.plugin.arc.psi.ArcElement;
-import com.bitbakery.plugin.arc.psi.ArcElementVisitor;
-import com.bitbakery.plugin.arc.psi.Def;
-import com.bitbakery.plugin.arc.psi.Mac;
+import com.bitbakery.plugin.arc.psi.*;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.NavigationItem;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Specifies which Arc elements are to be displayed in the "structure view"
+ * Wraps certain Arc elements to be displayed in the "structure view"
  */
 public class ArcStructureViewElement implements StructureViewTreeElement {
     private PsiElement myElement;
@@ -46,7 +43,7 @@ public class ArcStructureViewElement implements StructureViewTreeElement {
         final List<ArcElement> childrenElements = new ArrayList<ArcElement>();
         myElement.acceptChildren(new ArcElementVisitor() {
             public void visitElement(PsiElement element) {
-                if (element instanceof Def || element instanceof Mac) {
+                if (isBrowsableElement(element)) {
                     childrenElements.add((ArcElement) element);
                 } else {
                     element.acceptChildren(this);
@@ -60,6 +57,14 @@ public class ArcStructureViewElement implements StructureViewTreeElement {
         }
 
         return children;
+    }
+
+    private boolean isBrowsableElement(PsiElement element) {
+        return element instanceof Def
+                || element instanceof Mac
+                || element instanceof SingleArgFn
+                || element instanceof Fn
+                || element instanceof Assignment;
     }
 
     public ItemPresentation getPresentation() {
