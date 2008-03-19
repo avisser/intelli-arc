@@ -10,6 +10,7 @@ Requirements
 - Arc
   - See http://www.arclanguage.org/install for details
 - IntelliJ 7.0 or higher
+  - Tested on Windows, Mac OS X 10.4, and Ubuntu 7.10
 
 
 
