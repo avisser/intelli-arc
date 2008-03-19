@@ -70,9 +70,14 @@ public class ArcProcessHandler extends ProcessHandler {
             }
         }
 
-        // For now, these are hard-coded. We may need more flexibility in the future (e.g., different Schemes with different args)
-        String exe = isWindows ? "/MzScheme.exe" : isMac ? "/bin/mzscheme" : "/mzscheme";
-        String scheme = arcConfig.getMzSchemeHome() + exe;
+        // For now, the executables and command-line args are hard-coded. We may need more flexibility
+        //   in the future (e.g., different Schemes with different args)
+        String scheme = arcConfig.getMzSchemeHome();
+        if (!StringUtil.isEmptyOrSpaces(arcConfig.getMzSchemeHome())) {
+            scheme += isMac ? "/bin/" : "/";
+        }
+        scheme += isWindows ? "MzScheme.exe" : "mzscheme";
+
         String[] myCommandLine = new String[]{scheme, "-m", "-f", arcConfig.getArcInitializationFile()};
 
         myProcess = Runtime.getRuntime().exec(myCommandLine, null, new File(arcConfig.getArcHome()));
@@ -81,7 +86,6 @@ public class ArcProcessHandler extends ProcessHandler {
 
     private boolean notConfigured(ArcConfiguration arcConfig) {
         return StringUtil.isEmptyOrSpaces(arcConfig.getArcHome())
-                || StringUtil.isEmptyOrSpaces(arcConfig.getMzSchemeHome())
                 || StringUtil.isEmptyOrSpaces(arcConfig.getArcInitializationFile());
     }
 
@@ -104,6 +108,7 @@ public class ArcProcessHandler extends ProcessHandler {
                         myExitCode = process.waitFor();
                     }
                     catch (InterruptedException e) {
+                        // Do nothing, by design
                     }
                     myWaitSemaphore.up();
                 }
@@ -158,8 +163,10 @@ public class ArcProcessHandler extends ProcessHandler {
                                 stdOutReadingFuture.get();
                             }
                             catch (InterruptedException e) {
+                                // Do nothing
                             }
                             catch (ExecutionException e) {
+                                // Do nothing
                             }
 
                             onOSProcessTerminated(exitCode);
