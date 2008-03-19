@@ -1,7 +1,6 @@
 package com.bitbakery.plugin.arc.structure;
 
-import com.bitbakery.plugin.arc.psi.Def;
-import com.bitbakery.plugin.arc.psi.Mac;
+import com.bitbakery.plugin.arc.psi.*;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.structureView.TextEditorBasedStructureViewModel;
 import com.intellij.ide.util.treeView.smartTree.Filter;
@@ -11,7 +10,7 @@ import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * TODO: Describe the role(s) and responsibilit(ies)
+ * Enables "structure view" for Arc source files.
  */
 public class ArcStructureViewModel extends TextEditorBasedStructureViewModel {
     private PsiFile myFile;
@@ -50,7 +49,6 @@ public class ArcStructureViewModel extends TextEditorBasedStructureViewModel {
 
     @NotNull
     protected Class[] getSuitableClasses() {
-        // TODO - We'll want to add top-level variable definitions... anything else?
-        return new Class[]{Def.class, Mac.class};
+        return new Class[]{Def.class, Mac.class, SingleArgFn.class, Fn.class, Assignment.class};
     }
 }

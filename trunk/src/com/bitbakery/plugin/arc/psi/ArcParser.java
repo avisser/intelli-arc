@@ -19,7 +19,9 @@ public class ArcParser implements PsiParser {
         final PsiBuilder.Marker rootMarker = builder.mark();
         while (!builder.eof()) {
             IElementType token = builder.getTokenType();
-            if (LEFT_PAREN == token) {
+            if (LEFT_SQUARE == token) {
+                parseBrackets(builder);
+            } else if (LEFT_PAREN == token) {
                 parseParens(builder);
 
             } else {
@@ -31,6 +33,34 @@ public class ArcParser implements PsiParser {
         }
         rootMarker.done(root);
         return builder.getTreeBuilt();
+    }
+
+    /**
+     * Enter: Lexer is pointed at the opening left square bracket
+     * Exit: Lexer is pointed immediately after the closing right square bracket, or at the end-of-file
+     */
+    private void parseBrackets(PsiBuilder builder) {
+        PsiBuilder.Marker marker = builder.mark();
+        builder.advanceLexer();
+
+        IElementType token;
+        while (!builder.eof()) {
+
+            token = builder.getTokenType();
+            if (token == RIGHT_SQUARE) {
+                builder.advanceLexer();
+                marker.done(SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION);
+                return;
+            } else if (token == LEFT_PAREN) {
+                parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
+            } else {
+                builder.advanceLexer();
+            }
+        }
+
+        marker.error(message("parser.error.expectedRightBracket"));
     }
 
     /**
@@ -77,6 +107,8 @@ public class ArcParser implements PsiParser {
                 return;
             } else if (token == LEFT_PAREN) {
                 parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
             } else {
                 builder.advanceLexer();
             }
@@ -96,10 +128,12 @@ public class ArcParser implements PsiParser {
             token = builder.getTokenType();
             if (token == RIGHT_PAREN) {
                 builder.advanceLexer();
-                marker.done(FUNCTION_DEFINITION);
+                marker.done(ANONYMOUS_FUNCTION_DEFINITION);
                 return;
             } else if (token == LEFT_PAREN) {
                 parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
             } else {
                 builder.advanceLexer();
             }
@@ -123,6 +157,8 @@ public class ArcParser implements PsiParser {
                 return;
             } else if (token == LEFT_PAREN) {
                 parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
             } else {
                 builder.advanceLexer();
             }
@@ -142,10 +178,12 @@ public class ArcParser implements PsiParser {
             token = builder.getTokenType();
             if (token == RIGHT_PAREN) {
                 builder.advanceLexer();
-                marker.done(EXPRESSION);
+                marker.done(VARIABLE_ASSIGNMENT);
                 return;
             } else if (token == LEFT_PAREN) {
                 parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
             } else {
                 builder.advanceLexer();
             }
@@ -169,6 +207,8 @@ public class ArcParser implements PsiParser {
                 return;
             } else if (token == LEFT_PAREN) {
                 parseParens(builder);
+            } else if (token == LEFT_SQUARE) {
+                parseBrackets(builder);
             } else {
                 builder.advanceLexer();
             }

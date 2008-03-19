@@ -19,7 +19,7 @@ import javax.swing.*;
         storages = {@Storage(id = "main", file = "$APP_CONFIG$/arc-settings.xml")})
 public class ArcConfiguration implements ApplicationComponent, Configurable, PersistentStateComponent<ArcConfiguration> {
 
-    public String arcInitializationFile;
+    public String arcInitializationFile = "as.scm";
     public String mzSchemeHome;
     public String arcHome;
 

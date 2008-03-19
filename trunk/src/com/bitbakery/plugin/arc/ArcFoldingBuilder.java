@@ -1,17 +1,19 @@
 package com.bitbakery.plugin.arc;
 
-import com.intellij.lang.folding.FoldingBuilder;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.lang.ASTNode;
-import com.intellij.openapi.editor.Document;
-import com.intellij.psi.PsiElement;
+import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.BLOCK_COMMENT;
 import com.bitbakery.plugin.arc.psi.ArcElementTypes;
+import static com.bitbakery.plugin.arc.psi.ArcElementTypes.*;
+import com.bitbakery.plugin.arc.psi.Assignment;
 import com.bitbakery.plugin.arc.psi.Def;
 import com.bitbakery.plugin.arc.psi.Mac;
-import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.folding.FoldingBuilder;
+import com.intellij.lang.folding.FoldingDescriptor;
+import com.intellij.openapi.editor.Document;
+import com.intellij.psi.PsiElement;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Defines how code folding should behave for Arc files
@@ -19,16 +21,20 @@ import java.util.ArrayList;
 public class ArcFoldingBuilder implements FoldingBuilder {
 
     public String getPlaceholderText(ASTNode node) {
-        if (node.getElementType() == ArcElementTypes.FUNCTION_DEFINITION) {
+        if (node.getElementType() == FUNCTION_DEFINITION) {
             Def def = (Def) node.getPsi();
-            return "(def " + def.getName() + "...)";
-        } else if (node.getElementType() == ArcElementTypes.MACRO_DEFINITION) {
+            return "(def " + def.getName() + " ...)";
+        } else if (node.getElementType() == MACRO_DEFINITION) {
             Mac def = (Mac) node.getPsi();
-            return "(mac " + def.getName() + "...)";
-        } else if (node.getElementType() == ArcElementTypes.EXPRESSION) {
-            // TODO - We should actually print the first element, followed by an ellipsis
-            return "(...)";
-        } else if (node.getElementType() == ArcTokenTypes.BLOCK_COMMENT) {
+            return "(mac " + def.getName() + " ...)";
+        } else if (node.getElementType() == SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION) {
+            return "[...]";
+        } else if (node.getElementType() == ANONYMOUS_FUNCTION_DEFINITION) {
+            return "(fn ...)";
+        } else if (node.getElementType() == VARIABLE_ASSIGNMENT) {
+            Assignment a = (Assignment) node.getPsi();
+            return "(= " + a.getName() + " ...)";
+        } else if (node.getElementType() == BLOCK_COMMENT) {
             // TODO - Adjacent line comments should be foldable as a single block comment
             String text = node.getText();
             return text.length() > 15 ? text.substring(0, 15) + "..." : text;
@@ -47,7 +53,9 @@ public class ArcFoldingBuilder implements FoldingBuilder {
         return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
     }
 
-    /** We have to touch the PSI tree to get the folding to show up when we first open a file */
+    /**
+     * We have to touch the PSI tree to get the folding to show up when we first open a file
+     */
     private void touchTree(ASTNode node) {
         if (node.getElementType() == ArcElementTypes.FILE) {
             final PsiElement firstChild = node.getPsi().getFirstChild();
@@ -67,9 +75,11 @@ public class ArcFoldingBuilder implements FoldingBuilder {
     }
 
     private boolean isFoldableNode(ASTNode node) {
-        return (node.getElementType() == ArcElementTypes.FUNCTION_DEFINITION)
-                || (node.getElementType() == ArcElementTypes.MACRO_DEFINITION)
-                || (node.getElementType() == ArcElementTypes.EXPRESSION && node.getTextLength() > 5)
-                || (node.getElementType() == ArcTokenTypes.BLOCK_COMMENT);
+        return (node.getElementType() == FUNCTION_DEFINITION)
+                || (node.getElementType() == MACRO_DEFINITION)
+                || (node.getElementType() == SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION)
+                || (node.getElementType() == ANONYMOUS_FUNCTION_DEFINITION)
+                || (node.getElementType() == VARIABLE_ASSIGNMENT)
+                || (node.getElementType() == BLOCK_COMMENT);
     }
 }

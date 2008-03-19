@@ -3,7 +3,6 @@ package com.bitbakery.plugin.arc;
 import com.bitbakery.plugin.arc.lexer.ArcLexer;
 import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.bitbakery.plugin.arc.psi.*;
-import com.bitbakery.plugin.arc.psi.ArcElementTypes;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -13,9 +12,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -82,8 +81,14 @@ public class ArcParserDefinition implements ParserDefinition {
             return new Root(node);
         } else if (type == ArcElementTypes.FUNCTION_DEFINITION) {
             return new Def(node);
+        } else if (type == ArcElementTypes.ANONYMOUS_FUNCTION_DEFINITION) {
+            return new Fn(node);
+        } else if (type == ArcElementTypes.SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION) {
+            return new SingleArgFn(node);
         } else if (type == ArcElementTypes.MACRO_DEFINITION) {
             return new Mac(node);
+        } else if (type == ArcElementTypes.VARIABLE_ASSIGNMENT) {
+            return new Assignment(node);
         } else if (type == ArcElementTypes.EXPRESSION) {
             return new Expression(node);
         }
