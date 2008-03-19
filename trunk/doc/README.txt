@@ -1,5 +1,5 @@
 Arc plugin for IntelliJ IDEA 7.0+
-Version 0.2 - 2008/03/13
+Version 0.3 - 2008/03/19
 ----------------------------------------------------------------------------------------
 
 Requirements
@@ -9,7 +9,7 @@ Requirements
   - Available at http://plt-scheme/mzscheme
 - Arc
   - See http://www.arclanguage.org/install for details
-- IntelliJ 7 or higher
+- IntelliJ 7.0 or higher
 
 
 
@@ -30,16 +30,26 @@ Admittedly, the plugin doesn't yet have much IDE-goodness...
 - Arc REPL
 - Run selected code (option-R on the Mac, although this is customizable)
 - Load current file  (option-L on the Mac, although this is customizable)
+- Hot key to move focus to the REPL (option-G on the Mac, although this is customizable)
 - Simple structure view, showing function and macro definitions in the current file
+- Thestructure view now includes variable assignments and anonymous function definitions
+
+Some nice stuff comes for free from IntelliJ:
+
+- Local history of changes
+- Integration with source control systems
+- TODO lists automatically generated from your code
+- Code folding
 
 
 
 Known Issues
 ------------
+- The structure view now includes more, but looks a little noisy. I'm workin' on it... 
 - The lexer is messing up block comments, betraying my sad ignorance of regexes.
 - Abnormal termination from debug mode will leave MzScheme running, quickly eating all your RAM.
 - The REPL doesn't currently support dragging and dropping text from the editor.
-- I haven't yet provided any localizations.
+- Localizations are still in progress, and they're just hacks, built with Google Translate.
 - ...and much, much more!
 
 
