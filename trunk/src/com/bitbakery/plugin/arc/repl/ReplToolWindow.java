@@ -71,8 +71,7 @@ public class ReplToolWindow implements ProjectComponent {
     }
 
     public void writeToRepl(String s) {
-        view.print(s, ConsoleViewContentType.USER_INPUT);
-        view.print("\r\n", ConsoleViewContentType.USER_INPUT); // TODO - ???
+        view.print(s + "\r\n", ConsoleViewContentType.USER_INPUT);
     }
 
     @NotNull
