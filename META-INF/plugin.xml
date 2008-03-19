@@ -37,12 +37,12 @@
 
 
     <actions>
+        <action id="ArcMacex" class="com.bitbakery.plugin.arc.actions.MacexAction" text="Macroexpand"
+                description="Full macroexpansion" icon="/resources/icons/arc16.png">
+            <keyboard-shortcut keymap="$default" first-keystroke="alt M"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
         <!--
-                <action id="ArcMacex" class="com.bitbakery.plugin.arc.actions.MacexAction" text="Macroexpand"
-                        description="Full macroexpansion">
-                    <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt X"/>
-                    <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-                </action>
                 <action id="ArcMacex1" class="com.bitbakery.plugin.arc.actions.Macex1Action" text="Macroexpand-1"
                         description="Single macroexpansion">
                     <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt Z"/>
