@@ -1,7 +1,7 @@
 package com.bitbakery.plugin.arc.config;
 
 import com.bitbakery.plugin.arc.ArcIcons;
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;

@@ -1,7 +1,7 @@
 package com.bitbakery.plugin.arc.repl;
 
 import com.bitbakery.plugin.arc.ArcIcons;
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.filters.TextConsoleBuilder;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;

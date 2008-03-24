@@ -1,6 +1,6 @@
 package com.bitbakery.plugin.arc;
 
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import static com.bitbakery.plugin.arc.ArcSyntaxHighlighter.*;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;

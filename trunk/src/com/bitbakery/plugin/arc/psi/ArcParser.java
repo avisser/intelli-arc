@@ -1,6 +1,6 @@
 package com.bitbakery.plugin.arc.psi;
 
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.*;
 import static com.bitbakery.plugin.arc.psi.ArcElementTypes.*;
 import com.intellij.lang.ASTNode;

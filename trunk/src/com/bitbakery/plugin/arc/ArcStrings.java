@@ -8,11 +8,11 @@ import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.util.ResourceBundle;
 
-public class ArcResourceBundle {
+public class ArcStrings {
     private static Reference<ResourceBundle> ourBundle;
 
     @NonNls
-    private static final String BUNDLE = "com.bitbakery.plugin.arc.ArcResourceBundle";
+    private static final String BUNDLE = "com.bitbakery.plugin.arc.ArcStrings";
 
     public static String message(@PropertyKey(resourceBundle = BUNDLE)String key, Object... params) {
         return CommonBundle.message(getBundle(), key, params);
