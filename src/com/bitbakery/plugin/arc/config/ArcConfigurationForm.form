@@ -32,7 +32,7 @@
         </constraints>
         <properties>
           <labelFor value="581e8"/>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeHome"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.mzSchemeHome"/>
         </properties>
       </component>
       <component id="fd371" class="javax.swing.JLabel">
@@ -43,7 +43,7 @@
         </constraints>
         <properties>
           <labelFor value="fb055"/>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcHome"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.arcHome"/>
         </properties>
       </component>
       <component id="865fc" class="javax.swing.JButton" binding="mzSchemeHomeChooserButton">
@@ -77,7 +77,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.initializationFile"/>
+          <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.initializationFile"/>
         </properties>
       </component>
       <vspacer id="e5c89">
@@ -101,7 +101,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.getMzScheme"/>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.getMzScheme"/>
             </properties>
           </component>
           <hspacer id="dc4d8">
@@ -114,7 +114,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.mzSchemeUrl"/>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.mzSchemeUrl"/>
             </properties>
           </component>
         </children>
@@ -132,7 +132,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.getArc"/>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.getArc"/>
             </properties>
           </component>
           <hspacer id="45ee">
@@ -145,7 +145,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text resource-bundle="com/bitbakery/plugin/arc/ArcResourceBundle" key="config.arcUrl"/>
+              <text resource-bundle="com/bitbakery/plugin/arc/ArcStrings" key="config.arcUrl"/>
             </properties>
           </component>
         </children>

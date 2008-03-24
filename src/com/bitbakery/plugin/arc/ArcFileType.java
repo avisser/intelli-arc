@@ -1,6 +1,6 @@
 package com.bitbakery.plugin.arc;
 
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NotNull;
 

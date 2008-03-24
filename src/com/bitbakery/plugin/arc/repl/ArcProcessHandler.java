@@ -1,6 +1,6 @@
 package com.bitbakery.plugin.arc.repl;
 
-import static com.bitbakery.plugin.arc.ArcResourceBundle.message;
+import static com.bitbakery.plugin.arc.ArcStrings.message;
 import com.bitbakery.plugin.arc.config.ArcConfiguration;
 import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
