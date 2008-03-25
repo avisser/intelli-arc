@@ -40,31 +40,6 @@ public class ArcConfiguration implements ApplicationComponent, Configurable, Per
     }
 
 
-    public String getArcInitializationFile() {
-        return arcInitializationFile;
-    }
-
-    public void setArcInitializationFile(String arcInitializationFile) {
-        this.arcInitializationFile = arcInitializationFile;
-    }
-
-    public String getMzSchemeHome() {
-        return mzSchemeHome;
-    }
-
-    public void setMzSchemeHome(final String mzSchemeHome) {
-        this.mzSchemeHome = mzSchemeHome;
-    }
-
-    public String getArcHome() {
-        return arcHome;
-    }
-
-    public void setArcHome(final String arcHome) {
-        this.arcHome = arcHome;
-    }
-
-
     @Nls
     public String getDisplayName() {
         return message("plugin.arc.name");

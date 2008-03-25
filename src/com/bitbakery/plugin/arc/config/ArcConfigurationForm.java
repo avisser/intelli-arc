@@ -84,21 +84,21 @@ public class ArcConfigurationForm {
     }
 
     public void setData(ArcConfiguration data) {
-        arcHome.setText(data.getArcHome());
-        mzSchemeHome.setText(data.getMzSchemeHome());
-        arcInitializationFile.setText(data.getArcInitializationFile());
+        arcHome.setText(data.arcHome);
+        mzSchemeHome.setText(data.mzSchemeHome);
+        arcInitializationFile.setText(data.arcInitializationFile);
     }
 
     public void getData(ArcConfiguration data) {
-        data.setArcHome(arcHome.getText());
-        data.setMzSchemeHome(mzSchemeHome.getText());
-        data.setArcInitializationFile(arcInitializationFile.getText());
+        data.arcHome = arcHome.getText();
+        data.mzSchemeHome = mzSchemeHome.getText();
+        data.arcInitializationFile = arcInitializationFile.getText();
     }
 
     public boolean isModified(ArcConfiguration data) {
-        return isModified(arcHome, data.getArcHome())
-                || isModified(mzSchemeHome, data.getMzSchemeHome())
-                || isModified(arcInitializationFile, data.getArcInitializationFile());
+        return isModified(arcHome, data.arcHome)
+                || isModified(mzSchemeHome, data.mzSchemeHome)
+                || isModified(arcInitializationFile, data.arcInitializationFile);
     }
 
     private boolean isModified(JTextField textField, String data) {
