@@ -72,21 +72,21 @@ public class ArcProcessHandler extends ProcessHandler {
 
         // For now, the executables and command-line args are hard-coded. We may need more flexibility
         //   in the future (e.g., different Schemes with different args)
-        String scheme = arcConfig.getMzSchemeHome();
-        if (!StringUtil.isEmptyOrSpaces(arcConfig.getMzSchemeHome())) {
+        String scheme = arcConfig.mzSchemeHome;
+        if (!StringUtil.isEmptyOrSpaces(scheme)) {
             scheme += isMac ? "/bin/" : "/";
         }
         scheme += isWindows ? "MzScheme.exe" : "mzscheme";
 
-        String[] myCommandLine = new String[]{scheme, "-m", "-f", arcConfig.getArcInitializationFile()};
+        String[] myCommandLine = new String[]{scheme, "-m", "-f", arcConfig.arcInitializationFile};
 
-        myProcess = Runtime.getRuntime().exec(myCommandLine, null, new File(arcConfig.getArcHome()));
+        myProcess = Runtime.getRuntime().exec(myCommandLine, null, new File(arcConfig.arcHome));
         myWaitFor = new ProcessWaitFor(myProcess);
     }
 
     private boolean notConfigured(ArcConfiguration arcConfig) {
-        return StringUtil.isEmptyOrSpaces(arcConfig.getArcHome())
-                || StringUtil.isEmptyOrSpaces(arcConfig.getArcInitializationFile());
+        return StringUtil.isEmptyOrSpaces(arcConfig.arcHome)
+                || StringUtil.isEmptyOrSpaces(arcConfig.arcInitializationFile);
     }
 
     private static class ProcessWaitFor {
