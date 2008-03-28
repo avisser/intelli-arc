@@ -16,5 +16,10 @@ public interface ArcElementTypes {
     IElementType MACRO_DEFINITION = new ArcElementType("mac");
     IElementType VARIABLE_ASSIGNMENT = new ArcElementType("assignment");
     IElementType QUOTED_EXPRESSION = new ArcElementType("quoted expression");
+    IElementType BACKQUOTED_EXPRESSION = new ArcElementType("backquoted expression");
+    IElementType COMMA_EXPRESSION = new ArcElementType("comma expression");
+    IElementType COMMA_AT_EXPRESSION = new ArcElementType("comma-at expression");
     IElementType EXPRESSION = new ArcElementType("s expression");
+    IElementType VARIABLE = new ArcElementType("variable");
+    IElementType PARAMETER_LIST = new ArcElementType("parameter list");
 }

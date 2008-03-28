@@ -3,14 +3,10 @@ package com.bitbakery.plugin.arc;
 
 import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.bitbakery.plugin.arc.structure.ArcStructureViewModel;
-import com.intellij.formatting.FormattingModelBuilder;
 import com.intellij.ide.structureView.StructureViewBuilder;
 import com.intellij.ide.structureView.StructureViewModel;
 import com.intellij.ide.structureView.TreeBasedStructureViewBuilder;
-import com.intellij.lang.Commenter;
-import com.intellij.lang.Language;
-import com.intellij.lang.PairedBraceMatcher;
-import com.intellij.lang.ParserDefinition;
+import com.intellij.lang.*;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.lang.annotation.ExternalAnnotator;
 import com.intellij.lang.documentation.DocumentationProvider;
@@ -45,6 +41,11 @@ public class ArcLanguage extends Language {
     public SurroundDescriptor[] getSurroundDescriptors() {
         // TODO - Enable surrounding with (), [] (fn (xxx)  ...), etc.
         return super.getSurroundDescriptors();
+    }
+
+    @Nullable
+    public PsiReferenceAdjuster getReferenceAdjuster() {
+        return super.getReferenceAdjuster();    //To change body of overridden methods use File | Settings | File Templates.
     }
 
     @NotNull
@@ -115,10 +116,12 @@ public class ArcLanguage extends Language {
         };
     }
 
+/*
     @Nullable
     public FormattingModelBuilder getFormattingModelBuilder() {
         return new ArcFormattingModelBuilder();
     }
+*/
 
     public Annotator getAnnotator() {
         return ARC_ANNOTATOR;

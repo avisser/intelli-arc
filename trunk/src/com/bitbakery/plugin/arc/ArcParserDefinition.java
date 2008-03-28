@@ -91,10 +91,11 @@ public class ArcParserDefinition implements ParserDefinition {
             return new Assignment(node);
         } else if (type == ArcElementTypes.EXPRESSION) {
             return new Expression(node);
+        } else if (type == ArcElementTypes.VARIABLE) {
+            return new Variable(node);
+        } else if (type == ArcElementTypes.PARAMETER_LIST) {
+            return new ParameterList(node);
         }
-
-        // TODO - All the other node types...
-
 
         return new ASTWrapperPsiElement(node);
     }
