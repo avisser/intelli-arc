@@ -2,6 +2,7 @@ package com.bitbakery.plugin.arc.repl;
 
 import com.bitbakery.plugin.arc.ArcIcons;
 import static com.bitbakery.plugin.arc.ArcStrings.message;
+import com.bitbakery.plugin.arc.psi.Def;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.filters.TextConsoleBuilder;
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
@@ -16,6 +17,12 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiReference;
+import com.intellij.psi.impl.source.resolve.reference.PsiReferenceProvider;
+import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry;
+import com.intellij.psi.impl.source.resolve.reference.ReferenceType;
+import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.ui.JScrollPane2;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,6 +49,28 @@ public class ReplToolWindow implements ProjectComponent {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 disposeComponent();
+            }
+        });
+
+        // TODO - This doesn't belong here... we should have some sort of "ArcProjectLoader"...
+        ReferenceProvidersRegistry.getInstance(project).registerReferenceProvider(Def.class, new PsiReferenceProvider() {
+            @NotNull
+            public PsiReference[] getReferencesByElement(PsiElement psiElement) {
+                return new PsiReference[0];  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @NotNull
+            public PsiReference[] getReferencesByElement(PsiElement psiElement, ReferenceType referenceType) {
+                return new PsiReference[0];  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @NotNull
+            public PsiReference[] getReferencesByString(String s, PsiElement psiElement, ReferenceType referenceType, int i) {
+                return new PsiReference[0];  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            public void handleEmptyContext(PsiScopeProcessor psiScopeProcessor, PsiElement psiElement) {
+                //To change body of implemented methods use File | Settings | File Templates.
             }
         });
     }

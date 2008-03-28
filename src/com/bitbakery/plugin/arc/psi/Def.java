@@ -27,9 +27,18 @@ public class Def extends Expression implements PsiNamedElement {
         return name;
     }
 
+/*
+    @NotNull
+    public PsiReference[] getReferences() {
+        return super.getReferences();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+*/
+
+/*
     public String getText() {
         return super.getText();    //To change body of overridden methods use File | Settings | File Templates.
     }
+*/
 
     public PsiElement setName(@NonNls @NotNull String name) throws IncorrectOperationException {
         // TODO - Need to actually set the text in the symbol child element that defines the name
