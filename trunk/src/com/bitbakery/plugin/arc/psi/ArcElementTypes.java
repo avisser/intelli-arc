@@ -14,12 +14,12 @@ public interface ArcElementTypes {
     IElementType ANONYMOUS_FUNCTION_DEFINITION = new ArcElementType("fn");
     IElementType FUNCTION_DEFINITION = new ArcElementType("def");
     IElementType MACRO_DEFINITION = new ArcElementType("mac");
-    IElementType VARIABLE_ASSIGNMENT = new ArcElementType("assignment");
     IElementType QUOTED_EXPRESSION = new ArcElementType("quoted expression");
     IElementType BACKQUOTED_EXPRESSION = new ArcElementType("backquoted expression");
     IElementType COMMA_EXPRESSION = new ArcElementType("comma expression");
     IElementType COMMA_AT_EXPRESSION = new ArcElementType("comma-at expression");
     IElementType EXPRESSION = new ArcElementType("s expression");
-    IElementType VARIABLE = new ArcElementType("variable");
+    IElementType VARIABLE_DEFINITION = new ArcElementType("variable definition");
+    IElementType VARIABLE_REFERENCE = new ArcElementType("variable reference");
     IElementType PARAMETER_LIST = new ArcElementType("parameter list");
 }

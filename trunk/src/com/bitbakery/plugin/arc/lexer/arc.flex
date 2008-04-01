@@ -5,9 +5,6 @@ package com.bitbakery.plugin.arc.lexer;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.*;
-import java.util.*;
-import java.lang.reflect.Field;
-import org.jetbrains.annotations.NotNull;
 
 %%
 

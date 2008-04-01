@@ -3,7 +3,6 @@ package com.bitbakery.plugin.arc;
 import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.BLOCK_COMMENT;
 import com.bitbakery.plugin.arc.psi.ArcElementTypes;
 import static com.bitbakery.plugin.arc.psi.ArcElementTypes.*;
-import com.bitbakery.plugin.arc.psi.Assignment;
 import com.bitbakery.plugin.arc.psi.Def;
 import com.bitbakery.plugin.arc.psi.Mac;
 import com.intellij.lang.ASTNode;
@@ -31,9 +30,6 @@ public class ArcFoldingBuilder implements FoldingBuilder {
             return "[...]";
         } else if (node.getElementType() == ANONYMOUS_FUNCTION_DEFINITION) {
             return "(fn ...)";
-        } else if (node.getElementType() == VARIABLE_ASSIGNMENT) {
-            Assignment a = (Assignment) node.getPsi();
-            return "(= " + a.getName() + " ...)";
         } else if (node.getElementType() == BLOCK_COMMENT) {
             // TODO - Adjacent line comments should be foldable as a single block comment
             String text = node.getText();
@@ -49,7 +45,7 @@ public class ArcFoldingBuilder implements FoldingBuilder {
     public FoldingDescriptor[] buildFoldRegions(ASTNode node, Document document) {
         touchTree(node);
         List<FoldingDescriptor> descriptors = new ArrayList<FoldingDescriptor>();
-        appendDescriptors(node, document, descriptors);
+        appendDescriptors(node, descriptors);
         return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
     }
 
@@ -62,14 +58,14 @@ public class ArcFoldingBuilder implements FoldingBuilder {
         }
     }
 
-    private void appendDescriptors(final ASTNode node, final Document document, final List<FoldingDescriptor> descriptors) {
+    private void appendDescriptors(final ASTNode node, final List<FoldingDescriptor> descriptors) {
         if (isFoldableNode(node)) {
             descriptors.add(new FoldingDescriptor(node, node.getTextRange()));
         }
 
         ASTNode child = node.getFirstChildNode();
         while (child != null) {
-            appendDescriptors(child, document, descriptors);
+            appendDescriptors(child, descriptors);
             child = child.getTreeNext();
         }
     }
@@ -79,7 +75,6 @@ public class ArcFoldingBuilder implements FoldingBuilder {
                 || (node.getElementType() == MACRO_DEFINITION)
                 || (node.getElementType() == SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION)
                 || (node.getElementType() == ANONYMOUS_FUNCTION_DEFINITION)
-                || (node.getElementType() == VARIABLE_ASSIGNMENT)
                 || (node.getElementType() == BLOCK_COMMENT);
     }
 }

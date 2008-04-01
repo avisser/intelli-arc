@@ -1,6 +1,9 @@
 package com.bitbakery.plugin.arc.structure;
 
-import com.bitbakery.plugin.arc.psi.*;
+import com.bitbakery.plugin.arc.psi.Def;
+import com.bitbakery.plugin.arc.psi.Fn;
+import com.bitbakery.plugin.arc.psi.Mac;
+import com.bitbakery.plugin.arc.psi.SingleArgFn;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.structureView.TextEditorBasedStructureViewModel;
 import com.intellij.ide.util.treeView.smartTree.Filter;
@@ -49,6 +52,6 @@ public class ArcStructureViewModel extends TextEditorBasedStructureViewModel {
 
     @NotNull
     protected Class[] getSuitableClasses() {
-        return new Class[]{Def.class, Mac.class, SingleArgFn.class, Fn.class, Assignment.class};
+        return new Class[]{Def.class, Mac.class, SingleArgFn.class, Fn.class};
     }
 }

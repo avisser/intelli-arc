@@ -63,8 +63,7 @@ public class ArcStructureViewElement implements StructureViewTreeElement {
         return element instanceof Def
                 || element instanceof Mac
                 || element instanceof SingleArgFn
-                || element instanceof Fn
-                || element instanceof Assignment;
+                || element instanceof Fn;
     }
 
     public ItemPresentation getPresentation() {
