@@ -92,29 +92,12 @@ public class ArcParser implements PsiParser {
 
     /**
      * Enter: Lexer is pointed at the "def" token
-     * Exit: Lexer is pointed immediatelytely after the closing right paren, or at the end-of-file
+     * Exit: Lexer is pointed immediately after the closing right paren, or at the end-of-file
      */
     private void parseDef(PsiBuilder builder, PsiBuilder.Marker marker) {
         if (parseIdentifier(builder, marker)) return;
         if (parseParameterList(builder, marker)) return;
         parseBody(builder, marker, FUNCTION_DEFINITION);
-    }
-
-    private boolean parseIdentifier(PsiBuilder builder, PsiBuilder.Marker marker) {
-        builder.advanceLexer();
-        if (builder.eof()) {
-            marker.error(message("parser.error.expectedIdentifier"));
-            return true;
-        }
-        IElementType token = builder.getTokenType();
-        PsiBuilder.Marker functionName = builder.mark();
-        builder.advanceLexer();
-        if (token != SYMBOL) {
-            functionName.error(message("parser.error.expectedIdentifier"));
-        } else {
-            functionName.done(VARIABLE);
-        }
-        return false;
     }
 
     /**
@@ -125,6 +108,27 @@ public class ArcParser implements PsiParser {
         builder.advanceLexer();
         if (parseParameterList(builder, marker)) return;
         parseBody(builder, marker, ANONYMOUS_FUNCTION_DEFINITION);
+    }
+
+    /**
+     * Enter: Lexer is pointing at the token immediately preceding the identifier
+     * Exit: Lexer is pointed immediately after the identifer, or at the end-of-file
+     */
+    private boolean parseIdentifier(PsiBuilder builder, PsiBuilder.Marker marker) {
+        builder.advanceLexer();
+        if (builder.eof()) {
+            marker.error(message("parser.error.expectedIdentifier"));
+            return true;
+        }
+        IElementType token = builder.getTokenType();
+        PsiBuilder.Marker name = builder.mark();
+        builder.advanceLexer();
+        if (token != SYMBOL) {
+            name.error(message("parser.error.expectedIdentifier"));
+        } else {
+            name.done(VARIABLE_DEFINITION);
+        }
+        return false;
     }
 
     private void parseBody(PsiBuilder builder, PsiBuilder.Marker marker, IElementType defType) {
@@ -171,7 +175,7 @@ public class ArcParser implements PsiParser {
             // This should be our single "rest" parameter
             PsiBuilder.Marker var = builder.mark();
             builder.advanceLexer();
-            var.done(VARIABLE);
+            var.done(VARIABLE_DEFINITION);
             paramList.done(PARAMETER_LIST);
         }
         return false;
@@ -192,24 +196,8 @@ public class ArcParser implements PsiParser {
      * Exit: Lexer is pointed immediatelytely after the closing right paren, or at the end-of-file
      */
     private void parseAssignment(PsiBuilder builder, PsiBuilder.Marker marker) {
-        IElementType token;
-        while (!builder.eof()) {
-
-            token = builder.getTokenType();
-            if (token == RIGHT_PAREN) {
-                builder.advanceLexer();
-                marker.done(VARIABLE_ASSIGNMENT);
-                return;
-            } else if (token == LEFT_PAREN) {
-                parseParens(builder);
-            } else if (token == LEFT_SQUARE) {
-                parseBrackets(builder);
-            } else {
-                builder.advanceLexer();
-            }
-        }
-
-        marker.error(message("parser.error.expectedRightParen"));
+        if (parseIdentifier(builder, marker)) return;
+        parseBody(builder, marker, VARIABLE_DEFINITION);
     }
 
     /**
@@ -219,7 +207,6 @@ public class ArcParser implements PsiParser {
     private void parseExpression(PsiBuilder builder, PsiBuilder.Marker marker) {
         IElementType token;
         while (!builder.eof()) {
-
             token = builder.getTokenType();
             if (token == RIGHT_PAREN) {
                 builder.advanceLexer();
@@ -229,6 +216,10 @@ public class ArcParser implements PsiParser {
                 parseParens(builder);
             } else if (token == LEFT_SQUARE) {
                 parseBrackets(builder);
+            } else if (token == SYMBOL) {
+                PsiBuilder.Marker ref = builder.mark();
+                builder.advanceLexer();
+                ref.done(VARIABLE_REFERENCE);
             } else {
                 builder.advanceLexer();
             }
@@ -257,7 +248,7 @@ public class ArcParser implements PsiParser {
             } else {
                 PsiBuilder.Marker var = builder.mark();
                 builder.advanceLexer();
-                var.done(VARIABLE);
+                var.done(VARIABLE_DEFINITION);
             }
         }
 

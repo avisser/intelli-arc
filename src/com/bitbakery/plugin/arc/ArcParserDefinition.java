@@ -87,12 +87,12 @@ public class ArcParserDefinition implements ParserDefinition {
             return new SingleArgFn(node);
         } else if (type == ArcElementTypes.MACRO_DEFINITION) {
             return new Mac(node);
-        } else if (type == ArcElementTypes.VARIABLE_ASSIGNMENT) {
-            return new Assignment(node);
         } else if (type == ArcElementTypes.EXPRESSION) {
             return new Expression(node);
-        } else if (type == ArcElementTypes.VARIABLE) {
-            return new Variable(node);
+        } else if (type == ArcElementTypes.VARIABLE_DEFINITION) {
+            return new VariableDefinition(node);
+        } else if (type == ArcElementTypes.VARIABLE_REFERENCE) {
+            return new VariableReference(node);
         } else if (type == ArcElementTypes.PARAMETER_LIST) {
             return new ParameterList(node);
         }
