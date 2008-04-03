@@ -1,10 +1,10 @@
 package com.bitbakery.plugin.arc.psi;
 
 import com.bitbakery.plugin.arc.ArcIcons;
-import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.SYMBOL_FILTER;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
+import com.intellij.psi.tree.TokenSet;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +19,7 @@ public class Mac extends Expression implements PsiNamedElement {
 
     public Mac(ASTNode node) {
         super(node);
-        ASTNode[] children = node.getChildren(SYMBOL_FILTER);
+        ASTNode[] children = node.getChildren(TokenSet.create(ArcElementTypes.VARIABLE_DEFINITION));
         name = isEmpty(children) ? "mac" : children[0].getText();
     }
 
