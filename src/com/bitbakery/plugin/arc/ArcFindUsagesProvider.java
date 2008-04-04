@@ -1,9 +1,12 @@
 package com.bitbakery.plugin.arc;
 
 import com.bitbakery.plugin.arc.lexer.ArcLexer;
-import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.*;
+import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.COMMENTS;
+import static com.bitbakery.plugin.arc.lexer.ArcTokenTypes.LITERALS;
+import static com.bitbakery.plugin.arc.psi.ArcElementTypes.VARIABLE_DEFINITION_FILTER;
 import com.bitbakery.plugin.arc.psi.Def;
 import com.bitbakery.plugin.arc.psi.Mac;
+import com.bitbakery.plugin.arc.psi.VariableDefinition;
 import com.intellij.lang.cacheBuilder.DefaultWordsScanner;
 import com.intellij.lang.cacheBuilder.WordsScanner;
 import com.intellij.lang.findUsages.FindUsagesProvider;
@@ -21,14 +24,15 @@ public class ArcFindUsagesProvider implements FindUsagesProvider {
     @Nullable
     public WordsScanner getWordsScanner() {
         if (wordsScanner == null) {
-            wordsScanner = new DefaultWordsScanner(new ArcLexer(), SYMBOL_FILTER, COMMENTS, LITERALS);
+            wordsScanner = new DefaultWordsScanner(new ArcLexer(), VARIABLE_DEFINITION_FILTER, COMMENTS, LITERALS);
         }
         return wordsScanner;
     }
 
     public boolean canFindUsagesFor(@NotNull PsiElement psiElement) {
         return psiElement instanceof Def
-                || psiElement instanceof Mac;
+                || psiElement instanceof Mac
+                || psiElement instanceof VariableDefinition;
     }
 
     @Nullable
@@ -42,6 +46,8 @@ public class ArcFindUsagesProvider implements FindUsagesProvider {
             return "def";
         } else if (element instanceof Mac) {
             return "mac";
+        } else if (element instanceof VariableDefinition) {
+            return "var";
         }
         return null;
     }
@@ -57,7 +63,7 @@ public class ArcFindUsagesProvider implements FindUsagesProvider {
     @NotNull
     public String getNodeText(@NotNull PsiElement element, boolean useFullName) {
         if (element instanceof PsiNamedElement) {
-            return ((PsiNamedElement) element).getName();
+            return ((PsiNamedElement) element).getText();
         }
         return null;
     }
