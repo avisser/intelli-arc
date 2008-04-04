@@ -52,7 +52,6 @@ public class ArcFindUsagesProvider implements FindUsagesProvider {
         return null;
     }
 
-    @NotNull
     public String getDescriptiveName(@NotNull PsiElement element) {
         if (element instanceof PsiNamedElement) {
             return ((PsiNamedElement) element).getName();
@@ -60,10 +59,9 @@ public class ArcFindUsagesProvider implements FindUsagesProvider {
         return null;
     }
 
-    @NotNull
     public String getNodeText(@NotNull PsiElement element, boolean useFullName) {
         if (element instanceof PsiNamedElement) {
-            return ((PsiNamedElement) element).getText();
+            return element.getText();
         }
         return null;
     }

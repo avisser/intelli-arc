@@ -27,14 +27,28 @@ import org.jetbrains.annotations.Nullable;
 
 public class ArcLanguage extends Language {
     private static final Annotator ARC_ANNOTATOR = new ArcAnnotator();
+    private ArcRefactoringSupportProvider refactoringSupportProvider;
+    private ArcParserDefinition parserDefinition;
+    private ArcBraceMatcher braceMatcher;
+    private ArcSyntaxHighlighter syntaxHighlighter;
+    private ArcCommenter commenter;
+    private ArcFoldingBuilder foldingBuilder;
+    private ArcFindUsagesProvider findUsagesProvider;
 
     public ArcLanguage() {
         super("Arc");
+        parserDefinition = new ArcParserDefinition();
+        refactoringSupportProvider = new ArcRefactoringSupportProvider();
+        braceMatcher = new ArcBraceMatcher();
+        syntaxHighlighter = new ArcSyntaxHighlighter();
+        commenter = new ArcCommenter();
+        foldingBuilder = new ArcFoldingBuilder();
+        findUsagesProvider = new ArcFindUsagesProvider();
     }
 
     @NotNull
     public ParserDefinition getParserDefinition() {
-        return new ArcParserDefinition();
+        return parserDefinition;
     }
 
     @NotNull
@@ -45,19 +59,19 @@ public class ArcLanguage extends Language {
 
     @Nullable
     public PsiReferenceAdjuster getReferenceAdjuster() {
-        return super.getReferenceAdjuster();    //To change body of overridden methods use File | Settings | File Templates.
+        // TODO - Find out what the hell a "reference adjuster" is... (???)
+        return super.getReferenceAdjuster();
     }
 
     @NotNull
     public NamesValidator getNamesValidator() {
-        // TODO - This is actually only used by the rename refactoring, and we can actually redefine *anything* in Arc, so... return null...?
+        // TODO - Although legal, we should warn the user if they're about to redefine a name - I'm guessing we won't do that intentionally very often!
         return super.getNamesValidator();
     }
 
     @NotNull
     public RefactoringSupportProvider getRefactoringSupportProvider() {
-        // TODO - Extend DefaultRefactoringSupportHandler in order to implement safe delete, extract method, inline, and introduce variable
-        return super.getRefactoringSupportProvider();
+        return refactoringSupportProvider;
     }
 
     @Nullable
@@ -75,6 +89,7 @@ public class ArcLanguage extends Language {
     @Nullable
     public ExternalAnnotator getExternalAnnotator() {
         // TODO - Anything...? Potentially powerful, but do we need it for anything??
+        // TODO - Don't know if we need an *external* annotator, but something to warn about duplicate definitions would be nice!
         return super.getExternalAnnotator();
     }
 
@@ -85,21 +100,21 @@ public class ArcLanguage extends Language {
 
     @NotNull
     public PairedBraceMatcher getPairedBraceMatcher() {
-        return new ArcBraceMatcher();
+        return braceMatcher;
     }
 
     @NotNull
     public SyntaxHighlighter getSyntaxHighlighter(Project project, final VirtualFile virtualFile) {
-        return new ArcSyntaxHighlighter();
+        return syntaxHighlighter;
     }
 
     @NotNull
     public Commenter getCommenter() {
-        return new ArcCommenter();
+        return commenter;
     }
 
     public FoldingBuilder getFoldingBuilder() {
-        return new ArcFoldingBuilder();
+        return foldingBuilder;
     }
 
     @Nullable
@@ -129,7 +144,8 @@ public class ArcLanguage extends Language {
 
     @NotNull
     public FindUsagesProvider getFindUsagesProvider() {
-        return new ArcFindUsagesProvider();
+        return findUsagesProvider;
     }
+
 }
 

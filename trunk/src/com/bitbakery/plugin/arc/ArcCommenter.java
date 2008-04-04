@@ -1,18 +1,14 @@
 package com.bitbakery.plugin.arc;
 
+import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import com.intellij.lang.CodeDocumentationAwareCommenter;
 import com.intellij.psi.tree.IElementType;
-import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
 import org.jetbrains.annotations.Nullable;
 
 public class ArcCommenter implements CodeDocumentationAwareCommenter {
 
     public String getLineCommentPrefix() {
         return ";";
-    }
-
-    public boolean isLineCommentPrefixOnZeroColumn() {
-        return false;
     }
 
     public String getBlockCommentPrefix() {
