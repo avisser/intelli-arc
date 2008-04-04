@@ -35,7 +35,7 @@ public abstract class ArcElement extends ASTWrapperPsiElement {
 
     @NotNull
     public SearchScope getUseScope() {
-        //This is true as long as we have no inter-file references
+        // This is true as long as we have no inter-file references
         return new LocalSearchScope(getContainingFile());
     }
 

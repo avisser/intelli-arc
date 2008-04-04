@@ -123,10 +123,6 @@ public class ArcProcessHandler extends ProcessHandler {
         }
     }
 
-    public Process getProcess() {
-        return myProcess;
-    }
-
     public void startNotify() {
         final ReadProcessThread stdoutThread = new ReadProcessThread(createProcessOutReader()) {
             protected void textAvailable(String s) {

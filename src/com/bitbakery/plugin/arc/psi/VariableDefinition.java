@@ -1,11 +1,7 @@
 package com.bitbakery.plugin.arc.psi;
 
-import com.bitbakery.plugin.arc.ArcSupportLoader;
 import com.intellij.lang.ASTNode;
-import com.intellij.lang.ParserDefinition;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
@@ -21,6 +17,12 @@ public class VariableDefinition extends ArcElement implements PsiNamedElement {
     }
 
     public PsiElement setName(@NonNls @NotNull String name) throws IncorrectOperationException {
+        // TODO - Make me real to support rename refactorings!
+        return this;
+    }
+
+    /*
+    public PsiElement setName(@NonNls @NotNull String name) throws IncorrectOperationException {
         final ASTNode nameElement = createNameIdentifier(getProject(), name);
         getNode().replaceChild(getNode().getFirstChildNode(), nameElement);
         return this;
@@ -34,4 +36,5 @@ public class VariableDefinition extends ArcElement implements PsiNamedElement {
 
         return refExpression.getNode().getFirstChildNode();
     }
+*/
 }
