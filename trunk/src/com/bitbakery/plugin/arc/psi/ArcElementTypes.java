@@ -3,6 +3,7 @@ package com.bitbakery.plugin.arc.psi;
 import com.bitbakery.plugin.arc.ArcFileType;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
+import com.intellij.psi.tree.TokenSet;
 
 /**
  * Defines all of the various PSI element types for Arc
@@ -22,4 +23,6 @@ public interface ArcElementTypes {
     IElementType VARIABLE_DEFINITION = new ArcElementType("variable definition");
     IElementType VARIABLE_REFERENCE = new ArcElementType("variable reference");
     IElementType PARAMETER_LIST = new ArcElementType("parameter list");
+
+    TokenSet VARIABLE_DEFINITION_FILTER = TokenSet.create(VARIABLE_DEFINITION);
 }
