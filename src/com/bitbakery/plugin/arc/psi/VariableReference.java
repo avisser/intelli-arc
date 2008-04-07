@@ -46,20 +46,11 @@ public class VariableReference extends ArcElement {
                         return def;
                     }
                 }
-            } else if (e instanceof Def || e instanceof Mac) {
+            } else if (e instanceof Def || e instanceof Mac || e instanceof Fn) {
                 if (nameMatches(e)) {
                     return e;
                 }
 
-                ParameterList params = PsiTreeUtil.getChildOfType(e, ParameterList.class);
-                if (params != null) {
-                    for (PsiElement param : params.getChildren()) {
-                        if (nameMatches(param)) {
-                            return param;
-                        }
-                    }
-                }
-            } else if (e instanceof Fn) {
                 ParameterList params = PsiTreeUtil.getChildOfType(e, ParameterList.class);
                 if (params != null) {
                     for (PsiElement param : params.getChildren()) {
