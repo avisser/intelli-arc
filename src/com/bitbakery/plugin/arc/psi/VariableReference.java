@@ -33,60 +33,50 @@ public class VariableReference extends ArcElement {
         }
 
         public PsiElement resolve() {
-            return walkTree(myElement);
+            return walkTree(myElement.getParent());
         }
 
-        private PsiElement walkTree(PsiElement element) {
-            PsiElement parent = element.getParent();
-            if (parent == null) {
+        private PsiElement walkTree(PsiElement e) {
+            if (e == null) {
                 // TODO - Actually, I want to look for variable definitions (including def/mac) in other project files, as well as any core Arc files (i.e., stuff in arcN.tar)
                 return null;
-            }
-            if (parent instanceof PsiFile) {
-                for (PsiElement def : parent.getChildren()) {
-                    if (def instanceof PsiNamedElement) {
-                        PsiNamedElement p = (PsiNamedElement) def;
-                        if (p.getName().equals(myElement.getText())) {
-                            return p;
-                        }
+            } else if (e instanceof PsiFile) {
+                for (PsiElement def : e.getChildren()) {
+                    if (nameMatches(def)) {
+                        return def;
                     }
                 }
-                return null;
-            }
-            if (parent instanceof Def || parent instanceof Mac) {
-                PsiNamedElement p = (PsiNamedElement) parent;
-                if (p.getName().equals(myElement.getText())) {
-                    // TODO - Actually, I should probably return the VariableDefinition child of the Def/Mac element
-                    return p;
+            } else if (e instanceof Def || e instanceof Mac) {
+                if (nameMatches(e)) {
+                    return e;
                 }
-                ParameterList params = PsiTreeUtil.getChildOfType(p, ParameterList.class);
+
+                ParameterList params = PsiTreeUtil.getChildOfType(e, ParameterList.class);
                 if (params != null) {
                     for (PsiElement param : params.getChildren()) {
-                        if (param instanceof VariableDefinition) {
-                            VariableDefinition varDef = (VariableDefinition) param;
-                            if (varDef.getName().equals(myElement.getText())) {
-                                return varDef;
-                            }
+                        if (nameMatches(param)) {
+                            return param;
                         }
                     }
                 }
-            }
-            if (parent instanceof Fn) {
-                ParameterList params = PsiTreeUtil.getChildOfType(parent, ParameterList.class);
+            } else if (e instanceof Fn) {
+                ParameterList params = PsiTreeUtil.getChildOfType(e, ParameterList.class);
                 if (params != null) {
                     for (PsiElement param : params.getChildren()) {
-                        if (param instanceof VariableDefinition) {
-                            VariableDefinition varDef = (VariableDefinition) param;
-                            if (varDef.getName().equals(myElement.getText())) {
-                                return varDef;
-                            }
+                        if (nameMatches(param)) {
+                            return param;
                         }
                     }
                 }
             }
-            return walkTree(parent);
+            return walkTree(e.getParent());
         }
 
+        private boolean nameMatches(PsiElement e) {
+            return e instanceof PsiNamedElement
+                    && ((PsiNamedElement) e).getName() != null
+                    && ((PsiNamedElement) e).getName().equals(myElement.getText());
+        }
 
         public TextRange getRangeInElement() {
             return new TextRange(0, myElement.getTextLength());
