@@ -39,6 +39,7 @@ public class VariableReference extends ArcElement {
         private PsiElement walkTree(PsiElement element) {
             PsiElement parent = element.getParent();
             if (parent == null) {
+                // TODO - Actually, I want to look for variable definitions (including def/mac) in other project files, as well as any core Arc files (i.e., stuff in arcN.tar)
                 return null;
             }
             if (parent instanceof PsiFile) {
@@ -92,7 +93,7 @@ public class VariableReference extends ArcElement {
         }
 
         public Object[] getVariants() {
-            // TODO - Implement me to get code completion working
+            // TODO - Implement me to get code completion working - need to walk up the tree and gather every variable def (including def/mac), plus all top-level declarations, including other files
             //return new Object[0];
             return new String[]{"var-one", "var-two", "var-three"};
         }
