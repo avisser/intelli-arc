@@ -20,6 +20,7 @@ public interface ArcElementTypes {
     IElementType COMMA_EXPRESSION = new ArcElementType("comma expression");
     IElementType COMMA_AT_EXPRESSION = new ArcElementType("comma-at expression");
     IElementType EXPRESSION = new ArcElementType("s expression");
+    IElementType VARIABLE_ASSIGNMENT = new ArcElementType("variable assignment");
     IElementType VARIABLE_DEFINITION = new ArcElementType("variable definition");
     IElementType VARIABLE_REFERENCE = new ArcElementType("variable reference");
     IElementType PARAMETER_LIST = new ArcElementType("parameter list");
