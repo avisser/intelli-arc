@@ -89,6 +89,8 @@ public class ArcParserDefinition implements ParserDefinition {
             return new Mac(node);
         } else if (type == ArcElementTypes.EXPRESSION) {
             return new Expression(node);
+        } else if (type == ArcElementTypes.VARIABLE_ASSIGNMENT) {
+            return new VariableAssignment(node);
         } else if (type == ArcElementTypes.VARIABLE_DEFINITION) {
             return new VariableDefinition(node);
         } else if (type == ArcElementTypes.VARIABLE_REFERENCE) {

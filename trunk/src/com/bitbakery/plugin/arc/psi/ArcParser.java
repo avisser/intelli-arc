@@ -197,7 +197,7 @@ public class ArcParser implements PsiParser {
      */
     private void parseAssignment(PsiBuilder builder, PsiBuilder.Marker marker) {
         if (parseIdentifier(builder, marker)) return;
-        parseBody(builder, marker, VARIABLE_DEFINITION);
+        parseBody(builder, marker, VARIABLE_ASSIGNMENT);
     }
 
     /**

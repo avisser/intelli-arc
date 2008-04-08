@@ -14,7 +14,6 @@ import com.intellij.lang.findUsages.FindUsagesProvider;
 import com.intellij.lang.folding.FoldingBuilder;
 import com.intellij.lang.parameterInfo.ParameterInfoHandler;
 import com.intellij.lang.refactoring.NamesValidator;
-import com.intellij.lang.refactoring.RefactoringSupportProvider;
 import com.intellij.lang.surroundWith.SurroundDescriptor;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.project.Project;
@@ -27,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ArcLanguage extends Language {
     private static final Annotator ARC_ANNOTATOR = new ArcAnnotator();
-    private ArcRefactoringSupportProvider refactoringSupportProvider;
+    //private ArcRefactoringSupportProvider refactoringSupportProvider;
     private ArcParserDefinition parserDefinition;
     private ArcBraceMatcher braceMatcher;
     private ArcSyntaxHighlighter syntaxHighlighter;
@@ -38,7 +37,7 @@ public class ArcLanguage extends Language {
     public ArcLanguage() {
         super("Arc");
         parserDefinition = new ArcParserDefinition();
-        refactoringSupportProvider = new ArcRefactoringSupportProvider();
+        //refactoringSupportProvider = new ArcRefactoringSupportProvider();
         braceMatcher = new ArcBraceMatcher();
         syntaxHighlighter = new ArcSyntaxHighlighter();
         commenter = new ArcCommenter();
@@ -69,10 +68,13 @@ public class ArcLanguage extends Language {
         return super.getNamesValidator();
     }
 
+/*
     @NotNull
     public RefactoringSupportProvider getRefactoringSupportProvider() {
-        return refactoringSupportProvider;
+        return null;
+        //return refactoringSupportProvider;
     }
+*/
 
     @Nullable
     public ParameterInfoHandler[] getParameterInfoHandlers() {
