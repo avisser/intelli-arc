@@ -14,6 +14,7 @@ import com.intellij.lang.findUsages.FindUsagesProvider;
 import com.intellij.lang.folding.FoldingBuilder;
 import com.intellij.lang.parameterInfo.ParameterInfoHandler;
 import com.intellij.lang.refactoring.NamesValidator;
+import com.intellij.lang.refactoring.RefactoringSupportProvider;
 import com.intellij.lang.surroundWith.SurroundDescriptor;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.project.Project;
@@ -26,28 +27,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class ArcLanguage extends Language {
     private static final Annotator ARC_ANNOTATOR = new ArcAnnotator();
-    //private ArcRefactoringSupportProvider refactoringSupportProvider;
-    private ArcParserDefinition parserDefinition;
-    private ArcBraceMatcher braceMatcher;
-    private ArcSyntaxHighlighter syntaxHighlighter;
-    private ArcCommenter commenter;
-    private ArcFoldingBuilder foldingBuilder;
-    private ArcFindUsagesProvider findUsagesProvider;
 
     public ArcLanguage() {
         super("Arc");
-        parserDefinition = new ArcParserDefinition();
-        //refactoringSupportProvider = new ArcRefactoringSupportProvider();
-        braceMatcher = new ArcBraceMatcher();
-        syntaxHighlighter = new ArcSyntaxHighlighter();
-        commenter = new ArcCommenter();
-        foldingBuilder = new ArcFoldingBuilder();
-        findUsagesProvider = new ArcFindUsagesProvider();
     }
 
     @NotNull
     public ParserDefinition getParserDefinition() {
-        return parserDefinition;
+        return new ArcParserDefinition();
     }
 
     @NotNull
@@ -68,13 +55,11 @@ public class ArcLanguage extends Language {
         return super.getNamesValidator();
     }
 
-/*
     @NotNull
     public RefactoringSupportProvider getRefactoringSupportProvider() {
-        return null;
-        //return refactoringSupportProvider;
+        // TODO - Extend DefaultRefactoringSupportHandler in order to implement safe delete, extract method, inline, and introduce variable
+        return super.getRefactoringSupportProvider();
     }
-*/
 
     @Nullable
     public ParameterInfoHandler[] getParameterInfoHandlers() {
@@ -102,21 +87,21 @@ public class ArcLanguage extends Language {
 
     @NotNull
     public PairedBraceMatcher getPairedBraceMatcher() {
-        return braceMatcher;
+        return new ArcBraceMatcher();
     }
 
     @NotNull
     public SyntaxHighlighter getSyntaxHighlighter(Project project, final VirtualFile virtualFile) {
-        return syntaxHighlighter;
+        return new ArcSyntaxHighlighter();
     }
 
     @NotNull
     public Commenter getCommenter() {
-        return commenter;
+        return new ArcCommenter();
     }
 
     public FoldingBuilder getFoldingBuilder() {
-        return foldingBuilder;
+        return new ArcFoldingBuilder();
     }
 
     @Nullable
@@ -146,7 +131,7 @@ public class ArcLanguage extends Language {
 
     @NotNull
     public FindUsagesProvider getFindUsagesProvider() {
-        return findUsagesProvider;
+        return new ArcFindUsagesProvider();
     }
 
 }
