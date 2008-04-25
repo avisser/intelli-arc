@@ -20,4 +20,13 @@ public class Def extends VariableAssignment {
     public Icon getIcon(int flags) {
         return ArcIcons.ARC_DEF_ICON;
     }
+
+    // TODO - We haven't totaly sussed this one out yet...
+    public String getDocstring() {
+        ASTNode[] children = getNode().getChildren(TokenSet.create(ArcElementTypes.DOCSTRING));
+        if (children != null && children.length > 0) {
+            return children[0].getText();
+        }
+        return null;
+    }
 }

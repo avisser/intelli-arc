@@ -21,6 +21,9 @@ import org.jetbrains.annotations.Nullable;
 public class ArcFindUsagesProvider implements FindUsagesProvider {
     private WordsScanner wordsScanner;
 
+    // TODO - We can't seem to find usages in different files, and yet navigation from reference to definition works. WTF??
+
+
     @Nullable
     public WordsScanner getWordsScanner() {
         if (wordsScanner == null) {

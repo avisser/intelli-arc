@@ -8,6 +8,7 @@ import javax.swing.*;
 
 public class ArcFileType extends LanguageFileType {
 
+    public static final String EXTENSION = "arc";
     public static final ArcLanguage ARC = new ArcLanguage();
 
     public ArcFileType() {
@@ -26,7 +27,7 @@ public class ArcFileType extends LanguageFileType {
 
     @NotNull
     public String getDefaultExtension() {
-        return "arc";
+        return EXTENSION;
     }
 
     public Icon getIcon() {

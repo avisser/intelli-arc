@@ -56,17 +56,17 @@
         <!-- TODO - The text needs to be keys into the resource bundle! -->
 
         <action id="ArcLoadFile" class="com.bitbakery.plugin.arc.actions.LoadFileAction" text="Load File"
-                description="Load file in the REPL" icon="/resources/icons/arc16.png">
+                description="Load file in the REPL" icon="/icons/arc16.png">
             <keyboard-shortcut keymap="$default" first-keystroke="alt L"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action id="ArcRunSelection" class="com.bitbakery.plugin.arc.actions.RunSelectionAction" text="Run Selection"
-                description="Run selected text in the REPL" icon="/resources/icons/arc16.png">
+                description="Run selected text in the REPL" icon="/icons/arc16.png">
             <keyboard-shortcut keymap="$default" first-keystroke="alt S"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action id="ArcGoToRepl" class="com.bitbakery.plugin.arc.actions.GoToReplAction" text="Go to REPL"
-                description="Go to the REPL tool window" icon="/resources/icons/arc16.png">
+                description="Go to the REPL tool window" icon="/icons/arc16.png">
             <keyboard-shortcut keymap="$default" first-keystroke="alt R"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
