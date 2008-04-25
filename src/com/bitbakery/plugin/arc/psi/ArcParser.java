@@ -56,6 +56,9 @@ public class ArcParser implements PsiParser {
             } else if (token == LEFT_SQUARE) {
                 parseBrackets(builder);
             } else {
+
+                // TODO - Need some special handling around the underscore
+
                 builder.advanceLexer();
             }
         }
@@ -81,6 +84,10 @@ public class ArcParser implements PsiParser {
             parseMac(builder, marker);
         } else if (EQ == token) {
             parseAssignment(builder, marker);
+        } else if (LET == token) {
+            parseLet(builder, marker);
+        } else if (WITH == token) {
+            parseWith(builder, marker);
         } else if (LITERALS.contains(token)) {
             // TODO - But this is OK if we're building a list, so we need to handle that situation...
             builder.error(message("parser.error.expectedFunctionOrMacro"));
@@ -91,12 +98,47 @@ public class ArcParser implements PsiParser {
     }
 
     /**
+     * Enter: Lexer is pointed at the "let" token
+     * Exit: Lexer is pointed immediately after the closing right paren, or at the end-of-file
+     */
+    private void parseLet(PsiBuilder builder, PsiBuilder.Marker marker) {
+        parseExpression(builder, marker);
+/*
+        // TODO - Fix me!
+        if (parseIdentifier(builder, marker)) return;
+        parseExpression(builder, marker);
+        parseBody(builder, marker, LET_BLOCK);
+*/
+    }
+
+    /**
+     * Enter: Lexer is pointed at the "with" token
+     * Exit: Lexer is pointed immediately after the closing right paren, or at the end-of-file
+     */
+    private void parseWith(PsiBuilder builder, PsiBuilder.Marker marker) {
+        parseExpression(builder, marker);
+/*
+        // TODO - Fix me!
+        if (parseParameterList(builder, marker)) return;
+        parseBody(builder, marker, WITH_BLOCK);
+*/
+    }
+
+    /**
      * Enter: Lexer is pointed at the "def" token
      * Exit: Lexer is pointed immediately after the closing right paren, or at the end-of-file
      */
     private void parseDef(PsiBuilder builder, PsiBuilder.Marker marker) {
         if (parseIdentifier(builder, marker)) return;
         if (parseParameterList(builder, marker)) return;
+
+        // TODO - We need to get coloring to work for this.
+        // TODO - We *could* just have a single string for the body, in which case this is *not* a docstring...
+        if (builder.getTokenType() == STRING_LITERAL) {
+            PsiBuilder.Marker docstring = builder.mark();
+            builder.advanceLexer();
+            docstring.done(DOCSTRING);
+        }
         parseBody(builder, marker, FUNCTION_DEFINITION);
     }
 
@@ -123,7 +165,9 @@ public class ArcParser implements PsiParser {
         IElementType token = builder.getTokenType();
         PsiBuilder.Marker name = builder.mark();
         builder.advanceLexer();
-        if (token != SYMBOL) {
+
+        // TODO - We should have the annotator warn you if a non-arcN.tar file redefines a special char or keyword
+        if (token != SYMBOL && !KEYWORDS.contains(token) && !SPECIAL_CHARACTERS.contains(token)) {
             name.error(message("parser.error.expectedIdentifier"));
         } else {
             name.done(VARIABLE_DEFINITION);
@@ -196,7 +240,22 @@ public class ArcParser implements PsiParser {
      * Exit: Lexer is pointed immediatelytely after the closing right paren, or at the end-of-file
      */
     private void parseAssignment(PsiBuilder builder, PsiBuilder.Marker marker) {
-        if (parseIdentifier(builder, marker)) return;
+        builder.advanceLexer();
+        if (builder.eof()) {
+            marker.error(message("parser.error.expectedIdentifier"));
+            return;
+        }
+        IElementType token = builder.getTokenType();
+        PsiBuilder.Marker name = builder.mark();
+        builder.advanceLexer();
+        if (token == LEFT_PAREN) {
+            builder.advanceLexer();
+            parseExpression(builder, name);
+        } else if (token == SYMBOL) {
+            name.done(VARIABLE_DEFINITION);
+        } else {
+            name.error(message("parser.error.expectedIdentifier"));
+        }
         parseBody(builder, marker, VARIABLE_ASSIGNMENT);
     }
 

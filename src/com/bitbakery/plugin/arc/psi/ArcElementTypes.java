@@ -14,6 +14,9 @@ public interface ArcElementTypes {
     IElementType SINGLE_ARG_ANONYMOUS_FUNCTION_DEFINITION = new ArcElementType("single arg fn");
     IElementType ANONYMOUS_FUNCTION_DEFINITION = new ArcElementType("fn");
     IElementType FUNCTION_DEFINITION = new ArcElementType("def");
+    IElementType LET_BLOCK = new ArcElementType("let");
+    IElementType WITH_BLOCK = new ArcElementType("with");
+    IElementType DOCSTRING = new ArcElementType("docstring");
     IElementType MACRO_DEFINITION = new ArcElementType("mac");
     IElementType QUOTED_EXPRESSION = new ArcElementType("quoted expression");
     IElementType BACKQUOTED_EXPRESSION = new ArcElementType("backquoted expression");

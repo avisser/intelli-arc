@@ -2,6 +2,7 @@ package com.bitbakery.plugin.arc;
 
 import com.bitbakery.plugin.arc.lexer.ArcLexer;
 import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
+import com.bitbakery.plugin.arc.psi.ArcElementTypes;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
@@ -36,6 +37,7 @@ public class ArcSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey BAD_CHARACTER = TextAttributesKey.createTextAttributesKey("ARC.BAD_CHARACTER", HighlighterColors.BAD_CHARACTER.getDefaultAttributes());
     public static final TextAttributesKey BLOCK_COMMENT = TextAttributesKey.createTextAttributesKey("ARC.BLOCK_COMMENT", HighlighterColors.JAVA_LINE_COMMENT.getDefaultAttributes());
     public static final TextAttributesKey LINE_COMMENT = TextAttributesKey.createTextAttributesKey("ARC.LINE_COMMENT", HighlighterColors.JAVA_LINE_COMMENT.getDefaultAttributes());
+    public static final TextAttributesKey DOCSTRING = TextAttributesKey.createTextAttributesKey("ARC.DOCSTRING", HighlighterColors.JAVA_DOC_COMMENT.getDefaultAttributes());
 
     public static final TextAttributesKey QUOTE_KEYWORD = TextAttributesKey.createTextAttributesKey("ARC.QUOTE_KEYWORD", HighlighterColors.JAVA_KEYWORD.getDefaultAttributes());
     public static final TextAttributesKey FN = TextAttributesKey.createTextAttributesKey("ARC.FN", HighlighterColors.JAVA_KEYWORD.getDefaultAttributes());
@@ -69,6 +71,10 @@ public class ArcSyntaxHighlighter extends SyntaxHighlighterBase {
         keys.put(ArcTokenTypes.BAD_CHARACTER, BAD_CHARACTER);
         keys.put(ArcTokenTypes.BLOCK_COMMENT, BLOCK_COMMENT);
         keys.put(ArcTokenTypes.LINE_COMMENT, LINE_COMMENT);
+
+        // TODO - This doesn't work - the coloring only works with the lexer output - *not* the parser output
+        keys.put(ArcElementTypes.DOCSTRING, DOCSTRING);
+        keys.put(ArcTokenTypes.DO, LINE_COMMENT);
 
         keys.put(ArcTokenTypes.QUOTE_KEYWORD, QUOTE_KEYWORD);
         keys.put(ArcTokenTypes.FN, FN);

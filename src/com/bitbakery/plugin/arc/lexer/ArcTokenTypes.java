@@ -22,19 +22,20 @@ public interface ArcTokenTypes {
 
     IElementType LEFT_SQUARE = new ArcElementType("[");
     IElementType RIGHT_SQUARE = new ArcElementType("]");
-    IElementType UNDERSCORE = new ArcElementType("_");
-
     IElementType TILDE = new ArcElementType("~");
+
     IElementType COMPOSER = new ArcElementType(":");
     IElementType DOT = new ArcElementType(".");
     IElementType EQ = new ArcElementType("=");
-
     IElementType BACKQUOTE = new ArcElementType("`");
+
     IElementType QUOTE = new ArcElementType("'");
     IElementType COMMA = new ArcElementType(",");
     IElementType COMMA_AT = new ArcElementType(",@");
+    TokenSet SPECIAL_CHARACTERS = TokenSet.create(TILDE, COMPOSER, DOT, EQ, BACKQUOTE, QUOTE, COMMA, COMMA_AT);
 
-    TokenSet SPECIAL_CHARACTERS = TokenSet.create(COMPOSER, DOT, EQ, BACKQUOTE, QUOTE, COMMA, COMMA_AT);
+    // This guy is a little special, at least within single-var anonymous fn definitions
+    IElementType UNDERSCORE = new ArcElementType("_");
 
 
     // Keywords and special forms
@@ -52,6 +53,7 @@ public interface ArcTokenTypes {
     IElementType LET = new ArcElementType("let");
     IElementType WITH = new ArcElementType("with");
 
+    TokenSet KEYWORDS = TokenSet.create(DEF, MAC, FN, IF, DO, LET, WITH);
 
     // Comments
     IElementType BLOCK_COMMENT = new ArcElementType("block comment");

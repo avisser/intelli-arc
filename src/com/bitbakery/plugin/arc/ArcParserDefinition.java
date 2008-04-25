@@ -95,8 +95,14 @@ public class ArcParserDefinition implements ParserDefinition {
             return new VariableDefinition(node);
         } else if (type == ArcElementTypes.VARIABLE_REFERENCE) {
             return new VariableReference(node);
+        } else if (type == ArcElementTypes.LET_BLOCK) {
+            return new Let(node);
+        } else if (type == ArcElementTypes.WITH_BLOCK) {
+            return new With(node);
         } else if (type == ArcElementTypes.PARAMETER_LIST) {
             return new ParameterList(node);
+        } else if (type == ArcElementTypes.DOCSTRING) {
+            return new Docstring(node);
         }
 
         return new ASTWrapperPsiElement(node);

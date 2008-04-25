@@ -1,7 +1,10 @@
 package com.bitbakery.plugin.arc.psi;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.IncorrectOperationException;
@@ -38,8 +41,10 @@ public class VariableReference extends ArcElement {
 
         private PsiElement walkTree(PsiElement e) {
             if (e == null) {
-                // TODO - Actually, I want to look for variable definitions (including def/mac) in other project files, as well as any core Arc files (i.e., stuff in arcN.tar)
-                return null;
+                // TODO - This works!! Now I just need to incorporate standard Arc source files!
+
+                VirtualFile[] roots = ProjectRootManager.getInstance(myElement.getProject()).getContentSourceRoots();
+                return search(roots, myElement.getProject());
             } else if (e instanceof PsiFile) {
                 for (PsiElement def : e.getChildren()) {
                     if (nameMatches(def)) {
@@ -63,6 +68,31 @@ public class VariableReference extends ArcElement {
             return walkTree(e.getParent());
         }
 
+        private PsiElement search(VirtualFile[] children, Project p) {
+            for (VirtualFile file : children) {
+                PsiElement e = file.isDirectory() ? search(file.getChildren(), p) : search(file, p);
+                if (e != null) return e;
+            }
+            return null;
+        }
+
+        private PsiElement search(VirtualFile file, Project project) {
+            if (!"arc".equalsIgnoreCase(file.getExtension())) {
+                return null;
+            }
+            PsiDocumentManager.getInstance(project).commitAllDocuments();
+            return search(PsiManager.getInstance(project).findFile(file).getChildren());
+        }
+
+        private PsiElement search(PsiElement[] elements) {
+            for (PsiElement e : elements) {
+                if (nameMatches(e)) return e;
+                PsiElement el = search(e.getChildren());
+                if (el != null) return el;
+            }
+            return null;
+        }
+
         private boolean nameMatches(PsiElement e) {
             return e instanceof PsiNamedElement
                     && ((PsiNamedElement) e).getName() != null
@@ -74,7 +104,7 @@ public class VariableReference extends ArcElement {
         }
 
         public Object[] getVariants() {
-            // TODO - Implement me to get code completion working - need to walk up the tree and gather every variable def (including def/mac), plus all top-level declarations, including other files
+            // TODO - Implement me to get code completion working - need to search up the tree and gather every variable def (including def/mac), plus all top-level declarations, including other files
             //return new Object[0];
             return new String[]{"var-one", "var-two", "var-three"};
         }
