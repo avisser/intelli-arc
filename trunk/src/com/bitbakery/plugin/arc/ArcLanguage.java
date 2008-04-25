@@ -2,6 +2,7 @@ package com.bitbakery.plugin.arc;
 
 
 import com.bitbakery.plugin.arc.lexer.ArcTokenTypes;
+import com.bitbakery.plugin.arc.psi.Def;
 import com.bitbakery.plugin.arc.structure.ArcStructureViewModel;
 import com.intellij.ide.structureView.StructureViewBuilder;
 import com.intellij.ide.structureView.StructureViewModel;
@@ -19,7 +20,9 @@ import com.intellij.lang.surroundWith.SurroundDescriptor;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -69,8 +72,36 @@ public class ArcLanguage extends Language {
 
     @Nullable
     protected DocumentationProvider createDocumentationProvider() {
-        // TODO - Create a documentation provider that jumps us to the arcfn documentation site
-        return super.createDocumentationProvider();
+        return new DocumentationProvider() {
+            @Nullable
+            public String getQuickNavigateInfo(PsiElement element) {
+                // TODO - Generalize this to macros, etc.
+                if (element instanceof Def) {
+                    return ((Def) element).getDocstring();
+                }
+                return null;
+            }
+
+            @Nullable
+            public String getUrlFor(PsiElement element, PsiElement originalElement) {
+                return "http://www.arcfn.com"; // TODO - Plug me in to the appropriate arcfn.com page (or at least as close as possible...)
+            }
+
+            @Nullable
+            public String generateDoc(PsiElement element, PsiElement originalElement) {
+                return "Blah blah blah"; // TODO - Make me real, somehow...? Pull from arcfn, maybe...? Plus parameter info...?
+            }
+
+            @Nullable
+            public PsiElement getDocumentationElementForLookupItem(PsiManager psiManager, Object object, PsiElement element) {
+                return null; // TODO - What's this guy for??
+            }
+
+            @Nullable
+            public PsiElement getDocumentationElementForLink(PsiManager psiManager, String link, PsiElement context) {
+                return null; // TODO - What's this guy for??
+            }
+        };
     }
 
     @Nullable

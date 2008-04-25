@@ -175,6 +175,10 @@ public class ArcParser implements PsiParser {
         return false;
     }
 
+    /**
+     * Enter : Lexer is pointed at first element of the body, which will often be a left paren
+     * Exit: Lexer will be pointed immediately after the closing right paren (or constant, or whatever) of the body
+     */
     private void parseBody(PsiBuilder builder, PsiBuilder.Marker marker, IElementType defType) {
         while (!builder.eof()) {
             IElementType token = builder.getTokenType();

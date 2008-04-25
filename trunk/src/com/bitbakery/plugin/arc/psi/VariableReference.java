@@ -1,5 +1,6 @@
 package com.bitbakery.plugin.arc.psi;
 
+import com.bitbakery.plugin.arc.ArcFileType;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
@@ -25,6 +26,7 @@ public class VariableReference extends ArcElement {
     public PsiReference getReference() {
         return reference;
     }
+
 
     private class MyPsiReference extends PsiReferenceBase<VariableReference> {
         public MyPsiReference(VariableReference element) {
@@ -77,7 +79,7 @@ public class VariableReference extends ArcElement {
         }
 
         private PsiElement search(VirtualFile file, Project project) {
-            if (!"arc".equalsIgnoreCase(file.getExtension())) {
+            if (!ArcFileType.EXTENSION.equalsIgnoreCase(file.getExtension())) {
                 return null;
             }
             PsiDocumentManager.getInstance(project).commitAllDocuments();
