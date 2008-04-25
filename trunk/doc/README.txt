@@ -25,15 +25,20 @@ directories. Then open up (or create) a *.arc file, and begin playing.
 Features
 --------
 
-Admittedly, the plugin doesn't yet have much IDE-goodness...
-
 - Simple syntax highlighting, with customizable fonts and colors
 - Arc REPL
 - Run selected code (option-R on the Mac, although this is customizable)
 - Load current file  (option-L on the Mac, although this is customizable)
 - Hot key to move focus to the REPL (option-G on the Mac, although this is customizable)
-- Simple structure view, showing function and macro definitions in the current file
-- Thestructure view now includes variable assignments and anonymous function definitions
+- Simple structure view, showing function and macro definitions in the current file, as well as variable assignments and anonymous function definitions
+
+- TODO
+- Navigation from references to definitions for functions, macros, variables and parameters
+- Rename refactoring
+- Move function/macro refactoring
+- Change single-variable 
+- Extract anonymous function refactoring
+
 
 Some nice stuff comes for free from IntelliJ:
 

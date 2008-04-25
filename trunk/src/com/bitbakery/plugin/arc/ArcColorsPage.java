@@ -23,6 +23,7 @@ public class ArcColorsPage implements ColorSettingsPage {
                     "(= one-var-function [+ 1 _])\n\n" +
 
                     "(def function-name (param . rest)\n" +
+                    "   \"Documentation string\"\n" +
                     "   (function-body param rest))\n\n\n" +
 
                     "(def another-function rest\n" +
@@ -32,6 +33,7 @@ public class ArcColorsPage implements ColorSettingsPage {
                     "   `(,param ,@rest))\n";
 
     private static final AttributesDescriptor[] ATTRS = new AttributesDescriptor[]{
+            new AttributesDescriptor(message("color.settings.docstring"), DOCSTRING),
             new AttributesDescriptor(message("color.settings.comment"), LINE_COMMENT),
             new AttributesDescriptor(message("color.settings.number"), NUMERIC_LITERAL),
             new AttributesDescriptor(message("color.settings.string"), STRING_LITERAL),

@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public interface ArcIcons {
     @NonNls
-    final String DATA_PATH = "/resources/icons/";
+    final String DATA_PATH = "/icons/";
 
     final Icon ARC_LARGE_ICON = IconLoader.findIcon(DATA_PATH + "arc128.png");
 
