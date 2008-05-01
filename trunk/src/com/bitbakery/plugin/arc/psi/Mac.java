@@ -20,4 +20,12 @@ public class Mac extends VariableAssignment {
     public Icon getIcon(int flags) {
         return ArcIcons.ARC_MAC_ICON;
     }
+
+    public String getDocstring() {
+        ASTNode[] children = getNode().getChildren(TokenSet.create(ArcElementTypes.DOCSTRING));
+        if (children != null && children.length > 0) {
+            return children[0].getText();
+        }
+        return null;
+    }
 }
