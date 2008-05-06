@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Arc Documentation - defmemo</title>
+</head>
+<body>
+
+
+<A NAME="defmemo(args)"><!-- --></A>
+
+<H3>defmemo</H3>
+<PRE>
+<B>defmemo</B> &lt;name&gt; ( args )</PRE>
+
+<DL>
+    <DD>Convenience macro for defining a memoizing function.
+        <pre>
+        (defmemo adder (x y) (+ x y))</pre>
+        <P>
+            is equivalent to:
+
+        <P>
+        <pre>
+        (= adder (memo (fn (x y) (+ x Y))))</pre>
+
+    <DD>
+        <DL>
+        </DL>
+    </DD>
+    <DD>
+        <DL>
+            <DT><B>Parameters:</B>
+            <DD><CODE>args</CODE> - the original function
+
+            <DT><B>Returns:</B>
+            <DD>The name of the defined function.
+        </DL>
+    </DD>
+</DL>
+
+</body>
+</html>
