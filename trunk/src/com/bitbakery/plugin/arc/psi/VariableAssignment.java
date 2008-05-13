@@ -40,6 +40,7 @@ public class VariableAssignment extends Expression implements PsiNamedElement {
         return ArcIcons.ARC_DEF_ICON; // TODO - Create an icon for variable assignment
     }
 
+    // TODO - Figure out where this should really live... ArcElement, maybe??
     public ItemPresentation getPresentation() {
         return new ItemPresentation() {
             public String getPresentableText() {
@@ -48,12 +49,12 @@ public class VariableAssignment extends Expression implements PsiNamedElement {
 
             @Nullable
             public String getLocationString() {
-                return null;  // TODO - Add file name
+                return getNode().getPsi().getContainingFile().getName();
             }
 
             @Nullable
             public Icon getIcon(boolean open) {
-                return null;  // TODO - Add small icons for def/mac/=
+                return VariableAssignment.this.getIcon(0);
             }
 
             @Nullable
