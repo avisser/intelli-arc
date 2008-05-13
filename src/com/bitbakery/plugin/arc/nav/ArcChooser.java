@@ -46,7 +46,6 @@ public class ArcChooser implements ChooseByNameContributor {
     private void findNamesInFile(Project project, VirtualFile file, List<String> names) {
         PsiFile psiFile = PsiManager.getInstance(project).findFile(file);
         if (psiFile != null) {
-            System.out.println(psiFile.getName());
             for (PsiElement child : psiFile.getChildren()) {
                 if (child instanceof VariableAssignment) {
                     String name = ((VariableAssignment) child).getName();
