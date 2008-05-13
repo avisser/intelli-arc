@@ -16,10 +16,11 @@
     <resource-bundle>com.bitbakery.plugin.arc.ArcStrings</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <!-- <errorHandler implementation="com.intellij.diagnostic.ITNReporter"/> -->
         <fileTypeFactory implementation="com.bitbakery.plugin.arc.ArcSupportLoader"/>
         <colorSettingsPage implementation="com.bitbakery.plugin.arc.ArcColorsPage"/>
+        <gotoClassContributor implementation="com.bitbakery.plugin.arc.nav.ArcChooser"/>
     </extensions>
-
 
     <application-components>
         <component>

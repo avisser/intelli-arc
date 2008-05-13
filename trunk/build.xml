@@ -45,4 +45,17 @@
     <!-- TODO - Create target to upload plugin updates -->
 
 
+    <target name="generate-arc-documentation"
+            description="Generates HTML documentation from the docstrings within the Arc library files">
+
+        <!-- TODO - Custom Ant task to parse Arc files and generate docs -->
+    </target>
+
+
+    <target name="deploy-arc-documentation" depends="generate-arc-documentation"
+            description="Deploys the HTML documentation for Arc to a designated host">
+
+        <scp></scp>
+    </target>
+
 </project>

@@ -2,12 +2,15 @@ package com.bitbakery.plugin.arc.psi;
 
 import com.bitbakery.plugin.arc.ArcIcons;
 import com.intellij.lang.ASTNode;
+import com.intellij.navigation.ItemPresentation;
+import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
@@ -35,5 +38,28 @@ public class VariableAssignment extends Expression implements PsiNamedElement {
 
     public Icon getIcon(int flags) {
         return ArcIcons.ARC_DEF_ICON; // TODO - Create an icon for variable assignment
+    }
+
+    public ItemPresentation getPresentation() {
+        return new ItemPresentation() {
+            public String getPresentableText() {
+                return getName();
+            }
+
+            @Nullable
+            public String getLocationString() {
+                return null;  // TODO - Add file name
+            }
+
+            @Nullable
+            public Icon getIcon(boolean open) {
+                return null;  // TODO - Add small icons for def/mac/=
+            }
+
+            @Nullable
+            public TextAttributesKey getTextAttributesKey() {
+                return null;  // TODO - Investigate different fonts/colors/etc.for def vs. mac...?
+            }
+        };
     }
 }

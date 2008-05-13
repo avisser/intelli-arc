@@ -45,7 +45,7 @@ public class VariableReference extends ArcElement {
             if (e == null) {
                 // TODO - This works!! Now I just need to incorporate standard Arc source files!
 
-                VirtualFile[] roots = ProjectRootManager.getInstance(myElement.getProject()).getContentSourceRoots();
+                VirtualFile[] roots = ProjectRootManager.getInstance(myElement.getProject()).getContentRoots();
                 return search(roots, myElement.getProject());
             } else if (e instanceof PsiFile) {
                 for (PsiElement def : e.getChildren()) {
