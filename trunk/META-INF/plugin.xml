@@ -29,6 +29,12 @@
         <component>
             <implementation-class>com.bitbakery.plugin.arc.config.ArcConfiguration</implementation-class>
         </component>
+        <component>
+            <implementation-class>com.bitbakery.plugin.arc.module.ArcModuleLoader</implementation-class>
+        </component>
+        <component>
+            <implementation-class>com.bitbakery.plugin.arc.sdk.ArcSdkType</implementation-class>
+        </component>
     </application-components>
 
     <project-components>

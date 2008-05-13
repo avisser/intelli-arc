@@ -1,5 +1,5 @@
 Arc plugin for IntelliJ IDEA 7.0+
-Version 0.3 - 2008/03/19
+Version 0.4 - 2008/05/13
 ----------------------------------------------------------------------------------------
 
 Requirements
@@ -21,6 +21,15 @@ To get started, install the plugin, and specify your MzScheme and Arc home
 directories. Then open up (or create) a *.arc file, and begin playing.
 
 
+Changes
+-------
+
+0.4 (2008/05/13):
+- Added support for CL-style docstrings; when available, these show up as documentation
+- Added quick navigation via cmd-N - this is one of personal favorites thus far
+- Added navigation from variable references to variable definitions, which includes defs and macs
+
+
 
 Features
 --------
@@ -30,21 +39,21 @@ Features
 - Run selected code (option-R on the Mac, although this is customizable)
 - Load current file  (option-L on the Mac, although this is customizable)
 - Hot key to move focus to the REPL (option-G on the Mac, although this is customizable)
-- Simple structure view, showing function and macro definitions in the current file, as well as variable assignments and anonymous function definitions
+- Simple structure view, showing function and macro definitions in the current file,
+    as well as variable assignments and anonymous function definitions
 
-- TODO
-- Navigation from references to definitions for functions, macros, variables and parameters
-- Rename refactoring
-- Move function/macro refactoring
-- Change single-variable 
-- Extract anonymous function refactoring
+- TODO:
+  - Rename refactoring
+  - Move function/macro refactoring
+  - Change single-variable
+  - Extract anonymous function refactoring
 
 
 Some nice stuff comes for free from IntelliJ:
 
 - Local history of changes
 - Integration with source control systems
-- TODO lists automatically generated from your code
+- "TODO" lists automatically generated from your code
 - Code folding
 
 
