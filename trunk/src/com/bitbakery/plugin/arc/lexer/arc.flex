@@ -53,12 +53,13 @@ NumericLiteral=["+""-"]?({IntegerLiteral})|({FloatLiteral})
 /**** TODO - Do we need support for pipe-delimited symbols, like in Common Lisp??? ********************/
 /**** TODO - Is there some nice way to generalize this to other languages with non-Roman chars?? ******/
 /**** TODO - Can we intercept special characters before we intercept symbols? ******/
-Char=[A-Za-z0-9!@#$%<>/?&\^\+\*\-=\.\?\;\|]
+Char=[A-Za-z0-9!@#$%<>_/?&\^\+\*\-=\.\?\;\|]
+CharLiteral=#\\(newline|space|tab|return|\"|{Char})
+
 Symbol={Char}*
 
 EscapeSequence=\\[^\r\n]
 StringLiteral=\"([^\\\"]|{EscapeSequence})*(\"|\\)?
-CharLiteral=#\\{Char}
 
 /**** TODO - Include character literals ******************************/
 
@@ -81,7 +82,7 @@ CharLiteral=#\\{Char}
 "]"             { return RIGHT_SQUARE; }
 
 /** TODO - We're not handling the underscore correctly. We probably need to do the whole JFlex-state-while-in-square-brackets thingy...  ******/
-" _ "             { return UNDERSCORE; }
+/** " _ "             { return UNDERSCORE; }  *****/
 
 
 /** TODO - Anything special for empty lists? They *are* equivalent to nil, y'know... *************************/

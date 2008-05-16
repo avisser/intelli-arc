@@ -29,4 +29,5 @@ public interface ArcElementTypes {
     IElementType PARAMETER_LIST = new ArcElementType("parameter list");
 
     TokenSet VARIABLE_DEFINITION_FILTER = TokenSet.create(VARIABLE_DEFINITION);
+    TokenSet VARIABLE_ASSIGNMENT_FILTER = TokenSet.create(VARIABLE_ASSIGNMENT);
 }

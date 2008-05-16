@@ -236,6 +236,15 @@ public class ArcParser implements PsiParser {
     private void parseMac(PsiBuilder builder, PsiBuilder.Marker marker) {
         if (parseIdentifier(builder, marker)) return;
         if (parseParameterList(builder, marker)) return;
+
+        // TODO - We need to get coloring to work for this.
+        // TODO - We *could* just have a single string for the body, in which case this is *not* a docstring...
+        if (builder.getTokenType() == STRING_LITERAL) {
+            PsiBuilder.Marker docstring = builder.mark();
+            builder.advanceLexer();
+            docstring.done(DOCSTRING);
+        }
+
         parseBody(builder, marker, MACRO_DEFINITION);
     }
 
