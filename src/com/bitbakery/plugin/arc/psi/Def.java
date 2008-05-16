@@ -24,7 +24,7 @@ public class Def extends VariableAssignment {
     public String getDocstring() {
         ASTNode[] children = getNode().getChildren(TokenSet.create(ArcElementTypes.DOCSTRING));
         if (children != null && children.length > 0) {
-            return children[0].getText();
+            return stripQuotes(children[0].getText());
         }
         return null;
     }

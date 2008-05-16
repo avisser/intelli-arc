@@ -60,6 +60,7 @@ Some nice stuff comes for free from IntelliJ:
 
 Known Issues
 ------------
+- Find Usages is pretty well broken. I'm workin on it...
 - The structure view now includes more, but looks a little noisy. I'm workin' on it... 
 - The lexer is messing up block comments, betraying my sad ignorance of regexes.
 - Abnormal termination from debug mode will leave MzScheme running, quickly eating all your RAM.
