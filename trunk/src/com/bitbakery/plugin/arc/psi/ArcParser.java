@@ -102,13 +102,36 @@ public class ArcParser implements PsiParser {
      * Exit: Lexer is pointed immediately after the closing right paren, or at the end-of-file
      */
     private void parseLet(PsiBuilder builder, PsiBuilder.Marker marker) {
+
         parseExpression(builder, marker);
-/*
-        // TODO - Fix me!
-        if (parseIdentifier(builder, marker)) return;
-        parseExpression(builder, marker);
+        /*
+        if (builder.eof()) {
+            marker.error(message("parser.error.expectedParameterList"));
+            return;
+        }
+        */
+        /*
+        builder.advanceLexer(); // Now pointing at the var
+        PsiBuilder.Marker var = builder.mark();
+        builder.advanceLexer();
+        var.done(VARIABLE_DEFINITIO);
+
+        IElementType token = builder.getTokenType();
+        if (token == RIGHT_PAREN) { // A right paren here would mean that we're badly broken!
+            builder.advanceLexer();
+        } else if (token == LEFT_PAREN) {
+            builder.advanceLexer();
+            parseExpression(builder, var);
+        } else if (token == LEFT_SQUARE) {
+            parseBrackets(builder);
+        } else {
+            builder.advanceLexer();
+        }
+
+
+
         parseBody(builder, marker, LET_BLOCK);
-*/
+        */
     }
 
     /**
