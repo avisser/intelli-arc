@@ -66,7 +66,12 @@ public class VariableReference extends ArcElement {
                         }
                     }
                 }
+            } else if (e instanceof Let || e instanceof With) {
+
+                // TODO - Check the variables defined by the Let/With
+
             }
+
             return walkTree(e.getParent());
         }
 
