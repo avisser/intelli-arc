@@ -91,6 +91,12 @@ public class ArcParserDefinition implements ParserDefinition {
             return new Expression(node);
         } else if (type == ArcElementTypes.VARIABLE_ASSIGNMENT) {
             return new VariableAssignment(node);
+        } else if (type == ArcElementTypes.OPTIONAL_PARAMETER) {
+            return new OptionalParameter(node);
+        } else if (type == ArcElementTypes.REST_PARAMETER) {
+            return new RestParameter(node);
+        } else if (type == ArcElementTypes.PARAMETER) {
+            return new Parameter(node);
         } else if (type == ArcElementTypes.VARIABLE_DEFINITION) {
             return new VariableDefinition(node);
         } else if (type == ArcElementTypes.VARIABLE_REFERENCE) {
