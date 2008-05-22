@@ -69,7 +69,14 @@ public class VariableReference extends ArcElement {
             } else if (e instanceof Let || e instanceof With) {
 
                 // TODO - Check the variables defined by the Let/With
-
+                ParameterList params = PsiTreeUtil.getChildOfType(e, ParameterList.class);
+                if (params != null) {
+                    for (PsiElement param : params.getChildren()) {
+                        if (nameMatches(param)) {
+                            return param;
+                        }
+                    }
+                }
             }
 
             return walkTree(e.getParent());
